@@ -7,7 +7,7 @@ class Posts(models.Model):
     description = models.CharField(max_length=300)
     location = models.CharField(max_length=300)
     dateandtime = models.DateTimeField(auto_now_add=True, blank=True)
-    Category = models.CharField(max_length=30)
+    category = models.CharField(max_length=30) ## fixed lowercase
     slug = models.SlugField(unique=True)
     
     #CharField(max_length=300)
