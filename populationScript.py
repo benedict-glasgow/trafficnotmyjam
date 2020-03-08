@@ -33,14 +33,16 @@ center of Glasgow!!",
     for post in pythonPosts:
         addPosts(post['title'], post['description'], post['photo'],
                  post['location'], post['category'])
+    for p in Posts.objects.all():
+            print(f'- {p}')
 
 
 def addPosts(title, description, photo, location, category):
-    post = Posts.objects.get_or_create(title=title)[0]
-    post.description = description
-    post.photo = photo
-    post.location = location
-    post.category = category
+    post = Posts.objects.get_or_create(title=title,description = description,photo = photo,location = location,category = category)[0]
+    #post.description = description
+    #post.photo = photo
+    #post.location = location
+    #post.category = category
     post.save()
     return post
 

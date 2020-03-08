@@ -1,6 +1,6 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
-# Create your models here.
 class Posts(models.Model):
     title = models.CharField(max_length=30, unique=True)
     photo = models.ImageField(upload_to='post_images', blank=True)
@@ -8,12 +8,37 @@ class Posts(models.Model):
     location = models.CharField(max_length=300)
     dateandtime = models.DateTimeField(auto_now_add=True, blank=True)
     category = models.CharField(max_length=30) ## fixed lowercase
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField()#unique=True
     
     #CharField(max_length=300)
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
+        self.slug = slugify(self.title)
+        super(Posts, self).save(*args, **kwargs)
     
     def __str__(self):
         return self.title
+    
+class Comments(models.Model):
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True, blank=True)
+    content = models.CharField(max_length=300)
+    
+    def __str__(self):
+        return self.content
+    
+class User(models.Model):
+    username = models.CharField(max_length=30)
+    password = models.CharField(max_length=30)
+    
+    def __str__(self):
+        return self.username
+    
+class Reactions(models.Model):
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    Image = models.ImageField(upload_to='reaction_images', blank=True)
+    count = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.name
+    
