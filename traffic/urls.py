@@ -4,5 +4,6 @@ from traffic import views
 app_name = 'traffic'
 
 urlpatterns = [
-    path('',views.index,name='index')
+    path('', views.index, name='index'),
+    path('post/<slug:postSlug>/', views.post, name='post'),
 ]
