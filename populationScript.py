@@ -4,50 +4,113 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 
 import django
 django.setup()
-from traffic.models import Posts
+from traffic.models import Posts,User,Comments,Reactions
+
+
+from django.utils import timezone
+
 
 def populate():
+    
 
-    pythonPosts = [
-        { 'title': "Dont be fucking rude",
+    postsData = [
+        { 'title': "Dont be rude",
           'description': "I'm gonna hurt you, I swear to God",
           'photo': 'blank',
           'location': "G12",
+          'date' : timezone.now(),
           'category': "Bad Parking"
           },
         { 'title': "Are you kidding me?",
           'description': "no",
           'photo': 'blank',
           'location': "G13",
+          'date' : timezone.now(),
           'category': "Bad Parking"
           },
         { 'title': "SERIOUSLY",
           'description': "I am furious!! Imagine the audacity at the actual \
-center of Glasgow!!",
+          center of Glasgow!!",
           'photo': 'blank',
           'location': "G1",
+          'date' : timezone.now(),
           'category': "Bad Parking"
           },
         ]
+    userData = [{'username' : 'Jenny',
+                   'password': 'test1'
+                   },
+                  {'username' : 'Mark',
+                   'password': 'test2'
+                   },
+                   {'username' : 'Gary',
+                   'password': 'test3'
+                   },
+    
+            ]
+    commentsData = [{'content':"I think this is the rudest thing I have ever seen!"},
+                   {'content': "I cannot believe that this has happend, you couldnt make it up"},
+                   {'content': "I dont understand how this could even happen"},
+                  ]
+    
+    reactionsData = [{'name' : 'Red',
+                      'count':12},
+                     {'name' : 'Amber',
+                      'count':10},
+                     {'name' : 'Green',
+                      'count':1},
+                     {'name' : 'Stop',
+                      'count':100},
+                      ]
 
-    for post in pythonPosts:
-        addPosts(post['title'], post['description'], post['photo'],
-                 post['location'], post['category'])
+    for post in postsData:
+        p = addPosts(post['title'], post['description'], post['photo'],
+                 post['location'],post['date'], post['category']) 
+    for comment in commentsData:
+        addComment(p, comment['content'])
+    for reaction in reactionsData:
+        addReactions(p, reaction['name'],reaction['count'])
+    for user in userData:
+        addUser(user['username'],user['password'])
+    
+    print("Posts :")
     for p in Posts.objects.all():
             print(f'- {p}')
+    print("Users :")
+    for u in User.objects.all():
+        print(f'- {u}')
+    print("Comments :")
+    for c in Comments.objects.all():
+        print(f'- {c}')
+    print("Reactions :")
+    for r in Reactions.objects.all():
+        print(f'- {r}')
+    
 
 
-def addPosts(title, description, photo, location, category):
-    post = Posts.objects.get_or_create(title=title,description = description,photo = photo,location = location,category = category)[0]
-    #post.description = description
-    #post.photo = photo
-    #post.location = location
-    #post.category = category
+def addPosts(title, description, photo, location,date, category): 
+    post = Posts.objects.get_or_create(title=title, description=description, photo=photo, location=location,date=date, category=category)[0]
     post.save()
     return post
 
+def addUser(username,password):
+    user = User.objects.get_or_create(username=username, password = password)[0]
+    user.save()
+    return user
+
+def addComment(post,content):
+    comment = Comments.objects.get_or_create(post=post, content=content)[0]
+    comment.save()
+    return comment
+
+def addReactions(post,name,count):
+    reaction = Reactions.objects.get_or_create(post=post,name=name,count=count)[0]
+    reaction.save()
+    return reaction
+
 if __name__ =='__main__':
     print('Starting traffic population script')
+    print(timezone.now())
     populate()
 
 
