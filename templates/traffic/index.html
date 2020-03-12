@@ -1,5 +1,16 @@
 {% extends 'traffic/base.html' %}
 
-{% block title_block %}
-	TRAFFIC NJM...
+{% block topbar %}
+<div id="home-navbar">
+	<a href="{% url 'traffic:index'">HOME</a>
+	<a href="{% url 'traffic:about'">ABOUT</a>
+</div>
+{% endblock %}
+
+{% block left_body_block %}
+	<strong>-- POSTS FEED --</strong>
+{% endblock %}
+
+{% block right_body_block %}
+	<strong>-- MAP --</strong>
 {% endblock %}

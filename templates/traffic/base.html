@@ -4,27 +4,32 @@
 <html>
 	<head lang="en">	
 		<meta charset="UTF-8">
-		<title>
-			{% block title_block %}
-				TRAFFIC NOT-MY-JAM
-				Road Rage for the Modern Age
-			{% endblock %}
-		</title>
+		<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+		<title>TRAFFIC NOT-MY-JAM</title>
 	</head>
 	<body>
+		<div id="header">
+			<strong> TRAFFIC NOT-MY-JAM </strong> <br/>			
+		</div>
 		<div>
+			{% block topbar %}
+			{% endblock %}
+		</div>
+		<div id="l-block">
 			{% block left_body_block %}
 			{% endblock %}
 		</div>
-		<div>
+		<div id="r-block">
 			{% block right_body_block %}
 			{% endblock %}
 		</div>
 		<div>
-			{% block navbar %}
-				<a href="{% url 'traffic:index'">HOME</a>
-				<a href="{% url 'traffic:about'">ABOUT</a>
+			{% block bottombar %}
 			{% endblock %}
+		</div>
+		<div id="navbar">
+			<a href="{% url 'traffic:index'">HOME</a>
+			<a href="{% url 'traffic:about'">ABOUT</a>
 		</div>
 	</body>
 </html>

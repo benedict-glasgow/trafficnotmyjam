@@ -1,0 +1,31 @@
+{% extends 'traffic/base.html' %}
+
+{% block topbar %}
+-- POST TITLE -- 
+<a href="{% url ''">--LAST POST--</a>
+<a href="{% url ''">--NEXT POST--</a>
+{% endblock %}
+
+{% block left_body_block %}
+	<strong>-- POST IMAGE --</strong>
+{% endblock %}
+
+{% block right_body_block %}
+	<strong>-- MAP --</strong>
+{% endblock %}
+
+{% block bottombar%}
+<div>
+	--DESCRIPTION--
+	<div>
+		--RATING--
+	</div>
+</div>
+<div>
+	--COMMENTS--
+	<div>
+		--MAKE COMMENTS--
+	</div>
+	--REST OF COMMENTS--
+</div>
+{% endblock %}
