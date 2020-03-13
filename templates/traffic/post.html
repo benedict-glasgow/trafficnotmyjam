@@ -1,22 +1,26 @@
 {% extends 'traffic/base.html' %}
 
 {% block topbar %}
--- POST TITLE -- 
-<a href="{% url ''">--LAST POST--</a>
-<a href="{% url ''">--NEXT POST--</a>
+{{ post.title }}
+<div id="postnav">
+	<a href="{% url ''">◄</a>
+	<a href="{% url ''">►</a>
+</div>
 {% endblock %}
 
 {% block left_body_block %}
-	<strong>-- POST IMAGE --</strong>
+	<strong>{{ post.photo }}</strong>
 {% endblock %}
 
 {% block right_body_block %}
-	<strong>-- MAP --</strong>
+	<strong>{{ post.location }}</strong>
 {% endblock %}
 
 {% block bottombar%}
 <div>
-	--DESCRIPTION--
+	{{ post.dateAndTime }}
+	{{ post.category }} <br/>
+	{{ post.description }}
 	<div>
 		--RATING--
 	</div>
@@ -26,6 +30,11 @@
 	<div>
 		--MAKE COMMENTS--
 	</div>
-	--REST OF COMMENTS--
+	{% if comments %}
+	{% for comment in comments %} 
+	{{ comment.date }} <br/>
+	{{ comment.content }} <br/>
+	{% endfor %}
+	{% endif %}
 </div>
 {% endblock %}

@@ -30,4 +30,4 @@ def post(request, postSlug):
     except: Comments.DoesNotExist
 
 
-    return render(request, 'traffic/postTesting.html', context=contextDict)
+    return render(request, 'traffic/post.html', context=contextDict)
