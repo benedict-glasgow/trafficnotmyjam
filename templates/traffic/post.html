@@ -1,10 +1,12 @@
 {% extends 'traffic/base.html' %}
 
 {% block topbar %}
+<div id="topbar" class="contentbox">
 {{ post.title }}
 <div id="postnav">
 	<a href="{% url ''">◄</a>
 	<a href="{% url ''">►</a>
+</div>
 </div>
 {% endblock %}
 
@@ -18,9 +20,9 @@
 
 {% block bottombar%}
 <div>
-	{{ post.dateAndTime }}
-	{{ post.category }} <br/>
-	{{ post.description }}
+	Found at: {{ post.dateAndTime }}
+	Category: {{ post.category }} <br/>
+	Description: {{ post.description }}
 	<div>
 		--RATING--
 	</div>

@@ -8,26 +8,26 @@
 		<title>TRAFFIC NOT-MY-JAM</title>
 	</head>
 	<body>
-		<div id="header">
+		<div id="header" class="contextbox">
 			<strong> TRAFFIC NOT-MY-JAM </strong> <br/>			
 		</div>
-		<div id="topbar">
+		<div>
 			{% block topbar %}
 			{% endblock %}
 		</div>
-		<div id="l-block">
+		<div id="l-block" class="contentbox">
 			{% block left_body_block %}
 			{% endblock %}
 		</div>
-		<div id="r-block">
+		<div id="r-block" class="contentbox">
 			{% block right_body_block %}
 			{% endblock %}
 		</div>
-		<div id="bottombar">
+		<div id="bottombar" class="contentbox">
 			{% block bottombar %}
 			{% endblock %}
 		</div>
-		<div id="navbar">
+		<div id="navbar" class="contextbox">
 			<a href="{% url 'traffic:index'">HOME</a>
 			<a href="{% url 'traffic:about'">ABOUT</a>
 		</div>
