@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from traffic.models import Posts, Comments
+from traffic.forms import SearchForm
 
 def index(request):
     
@@ -82,6 +83,38 @@ def category(request, categorySlug):
         contextDict['posts'] = None
 
     return render(request, 'traffic/categoryTesting.html', context=contextDict)
+
+
+def search(request):
+    form = SearchForm()
+
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+
+        if form.is_valid():
+            return redirect(form.cleaned_data['search'] + '/')
+
+        else:
+            print(form.errors)
+
+    print(form)
+    return render(request, 'traffic/searchTesting.html', {'form':form} )
+
+
+def searchResult(request, searchQuery):
+    contextDict = {}
+
+    contextDict['query'] = searchQuery
+
+    posts = Posts.objects.filter(title=searchQuery)
+
+    if posts.exists():
+        contextDict['posts'] = posts
+    else:
+        contextDict['posts'] = None
+
+    return render(request, 'traffic/searchResultTesting.html', contextDict)
+    
 
 
 

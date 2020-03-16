@@ -12,4 +12,6 @@ urlpatterns = [
     path('about/rules', views.rules, name='rules'),
     path('categories/', views.categories, name='categories'),
     path('categories/<slug:categorySlug>/', views.category, name='category'),
+    path('search/', views.search, name='search'),
+    path('search/<searchQuery>/', views.searchResult, name='searchResult'),
 ]
