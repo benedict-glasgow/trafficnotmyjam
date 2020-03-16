@@ -50,8 +50,38 @@ def FAQ(request):
     return render(request, 'traffic/FAQTesting.html', context=contextDict)
 
 
+def categories(request):
+    contextDict = {}
+
+    slugs = Posts.objects.values('categorySlug').distinct()
+    categories = []
+
+    if slugs.exists():
+        for slug in slugs:
+            ## Get a name of the category for each slug:
+            categories += Posts.objects.filter(categorySlug=slug['categorySlug']).values('category').distinct()
+
+        print(categories, list(slugs))
+        contextDict['categories'] = zip(categories, slugs)
+        
+    else:
+        contextDict['categories'] = None
 
 
+    return render(request, 'traffic/categoriesTesting.html', context=contextDict)
+
+
+def category(request, categorySlug):
+    contextDict = {}
+
+    posts = Posts.objects.filter(categorySlug=categorySlug)
+
+    if posts.exists():
+        contextDict['posts'] = posts
+    else:
+        contextDict['posts'] = None
+
+    return render(request, 'traffic/categoryTesting.html', context=contextDict)
 
 
 

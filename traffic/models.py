@@ -9,10 +9,12 @@ class Posts(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True) ## Changed to date to stay consitent
     category = models.CharField(max_length=30) ## fixed lowercase
     slug = models.SlugField()#unique=True
+    categorySlug = models.SlugField(unique=False)
     
     #CharField(max_length=300)
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
+        self.categorySlug = slugify(self.category)
         super(Posts, self).save(*args, **kwargs)
     
     def __str__(self):

@@ -1,0 +1,13 @@
+{% if categories %}
+
+	{% for category, slug in categories %}
+		
+		{{ category.category }} <br/>
+		<a href="{{ slug.categorySlug }}/"> Bad practice hard coded link </a>
+		
+	{% endfor %}
+	
+	
+{% else %}
+	<strong> No such category </strong>
+{% endif %}
