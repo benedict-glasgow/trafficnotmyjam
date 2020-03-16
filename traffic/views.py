@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from traffic.models import Posts, Comments
 
@@ -13,9 +13,7 @@ def index(request):
 
 def post(request, postSlug):
     contextDict = {}
-    print(postSlug)
-
-
+    
     try:
         post = Posts.objects.get(slug=postSlug)
         comments = Comments.objects.filter(post=post)
@@ -31,3 +29,43 @@ def post(request, postSlug):
 
 
     return render(request, 'traffic/post.html', context=contextDict)
+
+
+def information(request):
+    contextDict = {}
+    return render(request, 'traffic/informationTesting.html', context=contextDict)
+
+
+def about(request):
+    return redirect('/about/information/')
+
+
+def rules(request):
+    contextDict = {}
+    return render(request, 'traffic/rulesTesting.html', context=contextDict)
+
+
+def FAQ(request):
+    contextDict = {}
+    return render(request, 'traffic/FAQTesting.html', context=contextDict)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
