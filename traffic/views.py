@@ -34,7 +34,7 @@ def post(request, postSlug):
 
 def information(request):
     contextDict = {}
-    return render(request, 'traffic/informationTesting.html', context=contextDict)
+    return render(request, 'traffic/info.html', context=contextDict)
 
 
 def about(request):
@@ -43,12 +43,12 @@ def about(request):
 
 def rules(request):
     contextDict = {}
-    return render(request, 'traffic/rulesTesting.html', context=contextDict)
+    return render(request, 'traffic/rule.html', context=contextDict)
 
 
 def FAQ(request):
     contextDict = {}
-    return render(request, 'traffic/FAQTesting.html', context=contextDict)
+    return render(request, 'traffic/faq.html', context=contextDict)
 
 
 def categories(request):
