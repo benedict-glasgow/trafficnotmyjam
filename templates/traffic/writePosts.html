@@ -6,7 +6,7 @@
     <body>
         <h1>Write a Post</h1>
             <div>
-                <form id="writePostsForm" method="post" action="/traffic/addPosts/">
+                <form id="addPosts" method="post" action="/traffic/addPosts/">
                      {% csrf_token %}
                      {% for hidden in form.hidden_fields %}
                          {{ hidden }}
