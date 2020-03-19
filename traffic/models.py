@@ -6,7 +6,7 @@ class Posts(models.Model):
     photo = models.ImageField(upload_to='post_images', blank=True)
     description = models.CharField(max_length=300)
     location = models.CharField(max_length=3)
-    date = models.DateTimeField(auto_now_add=True,blank=True) ## Changed to date to stay consitent 
+    date = models.DateTimeField(auto_now_add=True, blank=True) ## Changed to date to stay consitent 
     category = models.CharField(max_length=30) ## fixed lowercase
     slug = models.SlugField()#unique=True
     categorySlug = models.SlugField(unique=False, default = '')

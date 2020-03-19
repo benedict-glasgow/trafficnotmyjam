@@ -128,7 +128,7 @@ def addPosts(request):
         else:
             print(form.errors)
             
-    return render(request, '/post/writePosts.html', {'form': form})
+    return render(request, 'traffic/writePosts.html', {'form': form})
 
         
 
