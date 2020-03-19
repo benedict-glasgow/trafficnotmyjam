@@ -98,7 +98,7 @@ def search(request):
             print(form.errors)
 
     print(form)
-    return render(request, 'traffic/searchTesting.html', {'form':form} )
+    return render(request, 'traffic/search.html', {'form':form} )
 
 
 def searchResult(request, searchQuery):
@@ -113,7 +113,7 @@ def searchResult(request, searchQuery):
     else:
         contextDict['posts'] = None
 
-    return render(request, 'traffic/searchResultTesting.html', contextDict)
+    return render(request, 'traffic/results.html', contextDict)
     
 
 

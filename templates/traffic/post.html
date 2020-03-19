@@ -11,32 +11,38 @@
 {% endblock %}
 
 {% block left_body_block %}
-	<strong>{{ post.photo }}</strong>
+	<div id="l-block" class="contentbox">
+		<strong>{{ post.photo }}</strong>
+	</div>
 {% endblock %}
 
 {% block right_body_block %}
-	<strong>{{ post.location }}</strong>
+	<div id="r-block" class="contentbox">
+		<strong>{{ post.location }}</strong>
+	</div>
 {% endblock %}
 
 {% block bottombar%}
-<div>
-	Found at: {{ post.dateAndTime }}
-	Category: {{ post.category }} <br/>
-	Description: {{ post.description }}
+<div id="bottombar" class="contentbox">
 	<div>
-		--RATING--
+		Found at: {{ post.dateAndTime }}
+		Category: {{ post.category }} <br/>
+		Description: {{ post.description }}
+		<div>
+			--RATING--
+		</div>
 	</div>
-</div>
-<div>
-	--COMMENTS--
 	<div>
-		--MAKE COMMENTS--
+		--COMMENTS--
+		<div>
+			--MAKE COMMENTS--
+		</div>
+		{% if comments %}
+		{% for comment in comments %} 
+		{{ comment.date }} <br/>
+		{{ comment.content }} <br/>
+		{% endfor %}
+		{% endif %}
 	</div>
-	{% if comments %}
-	{% for comment in comments %} 
-	{{ comment.date }} <br/>
-	{{ comment.content }} <br/>
-	{% endfor %}
-	{% endif %}
 </div>
 {% endblock %}
