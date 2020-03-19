@@ -124,7 +124,7 @@ def addPosts(request):
         
         if form.is_valid():
             form.save(commit=True)
-            return redirect(' ')
+            return redirect('/')
         else:
             print(form.errors)
             
