@@ -10,7 +10,7 @@
 {% block left_body_block %}
     <div id="l-block" class="contentbox">
 		<strong>-- WRITE A POST--</strong>
-        <form id="addPosts" method="post" action="/addposts/">
+        <form id="addPosts" method="post" action= "/addpost/">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                     {{ hidden }}
@@ -21,7 +21,7 @@
                     {{ field }}
             {% endfor %}
             <input type="submit" name="submit" value="Write Post" />
-            </form>
+        </form>
 	</div>
 {% endblock %}
 

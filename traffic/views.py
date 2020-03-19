@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from traffic.models import Posts, Comments
-from traffic.forms import SearchForm, PostsForm
+from traffic.forms import SearchForm, PostsForm,CommentsForm
 
 def index(request):
     
@@ -129,6 +129,20 @@ def addPosts(request):
             print(form.errors)
             
     return render(request, 'traffic/writePosts.html', {'form': form})
+
+def addComments(request):
+    form = CommentsForm()
+    
+    if request.method =='POST':
+        form = PostsForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('/')
+        else:
+            print(form.errors)
+            
+    return render(request, 'traffic/post.html', {'form': form})
 
         
 

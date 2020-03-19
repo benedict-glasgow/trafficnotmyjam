@@ -1,5 +1,5 @@
 from django import forms
-from traffic.models import Posts
+from traffic.models import Posts,Comments
 from traffic.multichoice import POST_CATEGORIES
 
 class SearchForm(forms.Form):
@@ -21,3 +21,14 @@ class PostsForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields=('title','photo','description','location','category')
+        
+class CommentsForm(forms.ModelForm):
+    #post = forms.ForeignKey(widget=forms.HiddenInput())
+    #forms.ModelChoiceField(queryset=UserDefinedCode.objects.filter(owner=user))
+    #post = forms.ModelChoiceField(queryset=Posts.objects.filter(owner=user)widget=forms.HiddenInput())
+    date = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
+    content = forms.CharField(max_length=300, help_text="Add a Comment :")
+    
+    class Meta:
+        model = Comments
+        fields=('content',)

@@ -6,6 +6,7 @@ app_name = 'traffic'
 urlpatterns = [
     path('', views.index, name='index'),
     path('post/<slug:postSlug>/', views.post, name='post'),
+    path('post/<slug:postSlug>/addcomment', views.post, name='addComments'),
     path('about/information/', views.information, name='information'),
     path('about/', views.about),
     path('about/faq/', views.FAQ, name='FAQ'),
@@ -15,4 +16,5 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('search/<searchQuery>/', views.searchResult, name='searchResult'),
     path('addposts/',views.addPosts, name ='addposts'),
+
 ]
