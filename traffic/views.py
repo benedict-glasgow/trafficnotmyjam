@@ -113,8 +113,8 @@ def searchResult(request, searchQuery):
     else:
         contextDict['posts'] = None
 
-<<<<<<< HEAD
     return render(request, 'traffic/searchResultTesting.html', contextDict)
+    # return render(request, 'traffic/results.html', contextDict) Not sure which html page to lead to?
 
 def addPosts(request):
     form = PostsForm()
@@ -131,9 +131,9 @@ def addPosts(request):
     return render(request, '/post/writePosts.html', {'form': form})
 
         
-=======
-    return render(request, 'traffic/results.html', contextDict)
->>>>>>> cae0ed468f39d674b3505803b68cf83329a0f8c8
+
+   
+
     
 
 

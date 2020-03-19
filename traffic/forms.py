@@ -12,7 +12,7 @@ class PostsForm(forms.ModelForm):
                             help_text="Describe your jam.")
     location = forms.CharField(max_length=3, 
                             help_text="Enter the first three characters of a post code")
-    date = forms.IntegerField(widget=forms.HiddenInput())
+    date = forms.DateTimeField(widget=forms.HiddenInput())
     category = forms.CharField(max_length=300,help_text="Enter a category.")
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     categorySlug =forms.CharField(widget=forms.HiddenInput(), required=False)
