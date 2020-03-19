@@ -1,4 +1,5 @@
 from django.db import models
+from traffic.multichoice import POST_CATEGORIES
 from django.template.defaultfilters import slugify
 
 class Posts(models.Model):
@@ -7,7 +8,7 @@ class Posts(models.Model):
     description = models.CharField(max_length=300)
     location = models.CharField(max_length=3)
     date = models.DateTimeField(auto_now_add=True, blank=True) ## Changed to date to stay consitent 
-    category = models.CharField(max_length=30) ## fixed lowercase
+    category = models.IntegerField(choices = POST_CATEGORIES, default = 6) ## fixed lowercase
     slug = models.SlugField()#unique=True
     categorySlug = models.SlugField(unique=False, default = '')
     
