@@ -59,6 +59,17 @@ body{
 	
 	text-align: left;
 }
+#bottombar-lone{
+	position: relative;
+	top: -200px;
+	padding-left:5%;
+	margin-top: 300px;
+	margin-bottom: 10px;
+	
+	text-align: left;
+	
+	
+}
 #navbar{
 	position:fixed;
 	bottom: 10px;
