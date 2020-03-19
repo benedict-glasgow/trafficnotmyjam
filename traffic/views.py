@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from traffic.models import Posts, Comments
-from traffic.forms import SearchForm
+from traffic.forms import SearchForm, PostsForm
 
 def index(request):
     
@@ -113,7 +113,27 @@ def searchResult(request, searchQuery):
     else:
         contextDict['posts'] = None
 
-    return render(request, 'traffic/results.html', contextDict)
+    return render(request, 'traffic/searchResultTesting.html', contextDict)
+    # return render(request, 'traffic/results.html', contextDict) Not sure which html page to lead to?
+
+def addPosts(request):
+    form = PostsForm()
+    
+    if request.method =='POST':
+        form = PostsForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect(' ')
+        else:
+            print(form.errors)
+            
+    return render(request, '/post/writePosts.html', {'form': form})
+
+        
+
+   
+
     
 
 
