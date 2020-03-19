@@ -34,7 +34,7 @@ def post(request, postSlug):
 
 def information(request):
     contextDict = {}
-    return render(request, 'traffic/informationTesting.html', context=contextDict)
+    return render(request, 'traffic/info.html', context=contextDict)
 
 
 def about(request):
@@ -43,12 +43,12 @@ def about(request):
 
 def rules(request):
     contextDict = {}
-    return render(request, 'traffic/rulesTesting.html', context=contextDict)
+    return render(request, 'traffic/rule.html', context=contextDict)
 
 
 def FAQ(request):
     contextDict = {}
-    return render(request, 'traffic/FAQTesting.html', context=contextDict)
+    return render(request, 'traffic/faq.html', context=contextDict)
 
 
 def categories(request):
@@ -98,7 +98,7 @@ def search(request):
             print(form.errors)
 
     print(form)
-    return render(request, 'traffic/searchTesting.html', {'form':form} )
+    return render(request, 'traffic/search.html', {'form':form} )
 
 
 def searchResult(request, searchQuery):
@@ -113,6 +113,7 @@ def searchResult(request, searchQuery):
     else:
         contextDict['posts'] = None
 
+<<<<<<< HEAD
     return render(request, 'traffic/searchResultTesting.html', contextDict)
 
 def addPosts(request):
@@ -130,6 +131,9 @@ def addPosts(request):
     return render(request, '/post/writePosts.html', {'form': form})
 
         
+=======
+    return render(request, 'traffic/results.html', contextDict)
+>>>>>>> cae0ed468f39d674b3505803b68cf83329a0f8c8
     
 
 

@@ -1,0 +1,28 @@
+{% extends 'traffic/base.html' %}
+
+{% block topbar %}
+	<form id="searchForm" method="post" action="/search/">
+		{% csrf_token %}
+		{{ form.search.errors }}
+		{{ form.search.help_text }}
+		{{ form.search }} 
+		<input type="submit" name="submit" value="Search" />
+	</form>
+{% endblock %}
+
+{% block bottombar %}
+	<strong> {{ query }} </strong> <br/>
+
+	Posts: <br/>
+	{% if posts %}
+		{% for post in posts %}
+			{{ post.title }} <br/>
+		{% endfor %}
+	{% else %}
+		<em> No results. </em> <br/>
+	{% endif %}
+
+	Categories: <br/>
+	Comments: <br/>
+	etc?: <br/>
+{% endblock %}

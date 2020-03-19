@@ -1,0 +1,16 @@
+{% extends 'traffic/base.html' %}
+
+{% block topbar %}
+<div id="home-navbar" class="contextbox">
+	<a href="{% url '/about/information'">INFORMATION</a>
+	<a href="{% url '/about/faq'">FAQ</a>
+	<a href="{% url '/about/rules'">RULES</a>
+</div>
+{% endblock %}
+
+{% block bottombar%}
+<div id="bottombar-lone" class="contentbox">
+	{% block info %}
+	{% endblock %}
+</div>
+{% endblock %}
