@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from traffic.models import Posts, Comments
 from traffic.forms import SearchForm, PostsForm,CommentsForm
+#from django import template
+#register = template.Library()
 
 def index(request):
     
@@ -12,6 +14,8 @@ def index(request):
     return render(request, 'traffic/index.html', context=contextDict)
 
 
+
+#@register.inclusion_tag('writeComment.html')
 def post(request, postSlug):
     contextDict = {}
     
@@ -23,12 +27,13 @@ def post(request, postSlug):
             contextDict['comments'] = comments
         else:
             contextDict['comments'] = None
+            
     except Posts.DoesNotExist:
         contextDict['post'] = None
         contextDict['comments'] = None
     except: Comments.DoesNotExist
-
-
+    
+    
     return render(request, 'traffic/post.html', context=contextDict)
 
 
@@ -130,19 +135,21 @@ def addPosts(request):
             
     return render(request, 'traffic/writePosts.html', {'form': form})
 
-def addComments(request):
+def addComments(request,pk):
+    post= get_object_or_404(Posts, pk=pk)
     form = CommentsForm()
     
     if request.method =='POST':
-        form = PostsForm(request.POST)
+        form = CommentsForm(request.POST)
         
         if form.is_valid():
+            form.post = post
             form.save(commit=True)
             return redirect('/')
         else:
             print(form.errors)
             
-    return render(request, 'traffic/post.html', {'form': form})
+    return render(request, 'traffic/writeComment.html', {'form': form})
 
         
 
