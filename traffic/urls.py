@@ -6,7 +6,7 @@ app_name = 'traffic'
 urlpatterns = [
     path('', views.index, name='index'),
     path('post/<slug:postSlug>/', views.post, name='post'),
-   ## path('post/<slug:postSlug>/addcomment/', views.post, name='addComments'),
+   # path('post/<slug:postSlug>/addcomment/', views.addComments, name='addComments'),
     path('about/information/', views.information, name='information'),
     path('about/', views.about),
     path('about/faq/', views.FAQ, name='FAQ'),
@@ -20,5 +20,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.userLogin, name='login'),
     path('logout/', views.userLogout, name='logout'),
+    
+    #path('<slug:pk>/', indexView.as_view() ,name = 'index'),
 
 ]

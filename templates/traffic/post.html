@@ -1,6 +1,5 @@
 {% extends 'traffic/base.html' %}
 
-
 {% block topbar %}
 <div id="topbar" class="contentbox">
 {{ post.title }}
@@ -26,18 +25,18 @@
 {% block bottombar%}
 <div id="bottombar" class="contentbox">
 	<div>
-		Found at: {{ post.dateAndTime }}
+		Found at: {{ post.date }} <br/>
 		Category: {{ post.category }} <br/>
-		Description: {{ post.description }}
+		Description: {{ post.description }}<br/>
 		<div>
-			--RATING--
+			--RATING--<br/>
 		</div>
 	</div>
 	
 	
 	<div>
 	</div>
-		--COMMENTS--
+		--COMMENTS--<br/>
 		{% if comments %}
 		{% for comment in comments %} 
     		{{ comment.date }} <br/>
@@ -45,10 +44,10 @@
 		{% endfor %}
 		{% endif %}
 	<div>
-		--MAKE COMMENTS--
-		{% include 'traffic/writeComment.html' %}
-	
-	</div>
+		--MAKE COMMENTS--<br/>
+        {% for form in commentform %}
+          FORM
+        {% endfor %}
 
 	</div>
 </div>

@@ -27,6 +27,7 @@ def post(request, postSlug):
         post = Posts.objects.get(slug=postSlug)
         comments = Comments.objects.filter(post=post)
         contextDict['post'] = post
+        contextDict['commentform'] = CommentsForm()
         if comments.exists():
             contextDict['comments'] = comments
         else:
@@ -38,7 +39,7 @@ def post(request, postSlug):
     except: Comments.DoesNotExist
     
     
-    return render(request, 'traffic/postTesting.html', context=contextDict)
+    return render(request, 'traffic/post.html', context=contextDict) #postTesting.html removed
 
 
 def information(request):
@@ -137,22 +138,23 @@ def addPosts(request):
             
     return render(request, 'traffic/writePosts.html', {'form': form})
 
-def addComments(request,pk):
-    post= get_object_or_404(Posts, pk=pk)
+def addComments(request):#,pk
+    #post= get_object_or_404(Posts, pk=pk)
     form = CommentsForm()
     
     if request.method =='POST':
         form = CommentsForm(request.POST)
         
         if form.is_valid():
-            form.post = post
+            #form.post = post
+            #post= get_object_or_404(Posts, pk=pk)
+            #form.post = post
             form.save(commit=True)
             return redirect('/')
         else:
             print(form.errors)
             
-    return render(request, 'traffic/writeComment.html', {'form': form})
-
+    return render(request, 'traffic/post.html', {'form': form})
 
 def register(request):
     contextDict = {}
