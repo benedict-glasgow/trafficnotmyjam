@@ -1,0 +1,7 @@
+<strong> Login </strong> <br/>
+<form id="loginForm" method="POST" action="{% url 'traffic:login' %}">
+    {% csrf_token %}
+    Username: <input type="text" name="username" value="" size="50" /> <br/>
+    Password: <input type="password" name="password" value="" size="50" /> <br/>
+    <input type="submit" name="submit" value="Submit" />
+</form>

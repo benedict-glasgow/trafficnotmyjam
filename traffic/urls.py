@@ -17,5 +17,8 @@ urlpatterns = [
     path('search/<searchQuery>/', views.searchResult, name='searchResult'),
     path('addposts/',views.addPosts, name ='addposts'),
     path('addcomments/',views.addComments, name ='addComments'),
+    path('register/', views.register, name='register'),
+    path('login/', views.userLogin, name='login'),
+    path('logout/', views.userLogout, name='logout'),
 
 ]

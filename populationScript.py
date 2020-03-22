@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 
 import django
 django.setup()
-from traffic.models import Posts,User,Comments,Reactions
+from traffic.models import Posts, UserProfile, Comments, Reactions, User
 
 
 from django.utils import timezone

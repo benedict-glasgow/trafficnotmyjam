@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
+from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from traffic.models import Posts, Comments
-from traffic.forms import SearchForm, PostsForm,CommentsForm
+from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm
 from traffic.multichoice import POST_CATEGORIES
 #from django import template
 #register = template.Library()
@@ -150,8 +153,75 @@ def addComments(request,pk):
             
     return render(request, 'traffic/writeComment.html', {'form': form})
 
-        
 
+def register(request):
+    contextDict = {}
+
+    registered = False
+
+    if request.method == 'POST':
+        userForm = UserForm(request.POST)
+        userProfileForm = UserProfileForm(request.POST)
+
+        if userForm.is_valid() and userProfileForm.is_valid():
+
+            user = userForm.save()
+            user.set_password(user.password)
+            user.save()
+
+            ## The UserProfile models are set up for future expansion
+
+            profile = userProfileForm.save(commit=False)
+            profile.user = user
+            profile.save()
+
+            registered = True
+
+        else:
+            print(userForm.errors, userProfileForm.errors)
+
+    else:
+        userForm = UserForm()
+        userProfileForm = UserProfileForm()
+
+    contextDict['userForm'] = userForm
+    contextDict['userProfileForm'] = userProfileForm
+    contextDict['registered'] = registered
+
+    return render(request, 'traffic/registrationTesting.html', context=contextDict)
+
+
+def userLogin(request):
+
+    if request.method == 'POST':
+
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect(reverse('traffic:index'))
+
+            else:
+                HttpResponse("This account is disabled!")
+
+        
+        else:
+            print(f'Invalid login details {username} {password} ')
+            return HttpResponse("Invalid log in details!")
+
+    else:
+        return render(request, 'traffic/loginTesting.html')
+
+
+@login_required
+def userLogout(request):
+    logout(request)
+    return redirect(reverse('traffic:index'))
    
 
     

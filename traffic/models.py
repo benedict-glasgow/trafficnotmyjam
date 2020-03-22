@@ -1,6 +1,7 @@
 from django.db import models
 from traffic.multichoice import POST_CATEGORIES
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 
 class Posts(models.Model):
     title = models.CharField(max_length=30, unique=False)
@@ -30,12 +31,12 @@ class Comments(models.Model):
     def __str__(self):
         return self.content
     
-class User(models.Model):
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
-    
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ## A Placeholder model in case we want to add more fields for users
+    ## The username and password fields are handled by the built in User model
     def __str__(self):
-        return self.username
+        return self.user.username
     
 class Reactions(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE)
