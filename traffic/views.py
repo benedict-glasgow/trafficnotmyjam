@@ -104,12 +104,18 @@ def searchResult(request, searchQuery):
 
     contextDict['query'] = searchQuery
 
-    posts = Posts.objects.filter(title=searchQuery)
+    posts = Posts.objects.filter(title__icontains=searchQuery)
+    comments = Comments.objects.filter(content__icontains=searchQuery)
 
     if posts.exists():
         contextDict['posts'] = posts
     else:
         contextDict['posts'] = None
+
+    if comments.exists():
+        contextDict['comments'] = comments
+    else:
+        contextDict['comments'] = None
 
     return render(request, 'traffic/searchResultTesting.html', contextDict)
     # return render(request, 'traffic/results.html', contextDict) Not sure which html page to lead to?
