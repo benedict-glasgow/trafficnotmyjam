@@ -1,9 +1,9 @@
 POST_CATEGORIES = (
-    (1, "Bad Parking" ),
-    (2, "Poor Road Conditions" ),
-    (3, "How Not To Drive" ),
-    (4, "Killer Commutes"),
-    (5, "Cycling Catastrophes"),
-    (6, "General Jams")
+    ('bad-parking', "Bad Parking" ),
+    ('poor-road-conditions', "Poor Road Conditions" ),
+    ('how-not-to-drive', "How Not To Drive" ),
+    ('killer-commutes', "Killer Commutes"),
+    ('cycling-catastrophes', "Cycling Catastrophes"),
+    ('general-jams', "General Jams")
 )
 

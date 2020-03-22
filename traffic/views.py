@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from traffic.models import Posts, Comments
 from traffic.forms import SearchForm, PostsForm,CommentsForm
+from traffic.multichoice import POST_CATEGORIES
 #from django import template
 #register = template.Library()
 
@@ -34,7 +35,7 @@ def post(request, postSlug):
     except: Comments.DoesNotExist
     
     
-    return render(request, 'traffic/post.html', context=contextDict)
+    return render(request, 'traffic/postTesting.html', context=contextDict)
 
 
 def information(request):
@@ -59,20 +60,12 @@ def FAQ(request):
 def categories(request):
     contextDict = {}
 
-    slugs = Posts.objects.values('categorySlug').distinct()
     categories = []
 
-    if slugs.exists():
-        for slug in slugs:
-            ## Get a name of the category for each slug:
-            categories += Posts.objects.filter(categorySlug=slug['categorySlug']).values('category').distinct()
-
-        print(categories, list(slugs))
-        contextDict['categories'] = zip(categories, slugs)
-        
-    else:
-        contextDict['categories'] = None
-
+    for category in POST_CATEGORIES:
+        categories += [ {'slug':category[0], 'name':category[1] } ]
+    
+    contextDict['categories'] = categories
 
     return render(request, 'traffic/categoriesTesting.html', context=contextDict)
 
@@ -80,7 +73,7 @@ def categories(request):
 def category(request, categorySlug):
     contextDict = {}
 
-    posts = Posts.objects.filter(categorySlug=categorySlug)
+    posts = Posts.objects.filter(category=categorySlug)
 
     if posts.exists():
         contextDict['posts'] = posts
