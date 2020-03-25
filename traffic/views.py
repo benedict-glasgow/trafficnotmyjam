@@ -16,7 +16,7 @@ def index(request):
     
     contextDict = {}
     contextDict["posts"] = postsList
-    return render(request, 'traffic/indexTesting.html', context=contextDict)
+    return render(request, 'traffic/index.html', context=contextDict)
 
 
 

@@ -38,9 +38,9 @@ body{
 }
 #l-block{
 	padding-left:5%;
+	padding-bottom: 25px;
 	float: left;
 	width: 43%;
-	height: 250px;
 	
 	text-align: left;
 }
@@ -101,9 +101,19 @@ body{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	
-	color: white;
+	color: #eeeeee;
 	background-color: #2344a0;
-	border: 5px solid white;	
+	border: 5px solid white;
+	
+}
+div.contentbox a{
+	color: white;
+	
+	text-decoration: none;
+	font-weight: bold;	
+}
+div.contentbox a:hover{
+	color: cyan;
 }
 .contextbox{
     padding-top: 5px;
@@ -117,4 +127,25 @@ body{
 	padding-top: 2px;
 	padding-bottom: 2px;
 	margin-bottom: 10px;
+}
+.postbox{
+	border: 2px solid white;
+	margin-left: -5%;
+	margin-right: 5%;
+	margin-top: 10px;
+	padding: 5px;
+	overflow:hidden;
+}
+#postimg{
+	float: right;
+	width:29%;
+	border: 1px solid white;
+}
+#postinfo{
+	float:left;
+	width:69%;
+	font-size:0.9em;
+}
+#posttitle{
+	font-size:1.1em;
 }
