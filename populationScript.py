@@ -17,14 +17,14 @@ def populate():
         { 'title': "Dont be rude",
           'description': "I'm gonna hurt you, I swear to God",
           'photo': 'blank',
-          'location': "G12",
+          'location': "55.8816012, -4.3175199",
           'date' : timezone.now(),
           'category': 'how-not-to-drive'
           },
         { 'title': "Are you kidding me?",
           'description': "no",
           'photo': 'blank',
-          'location': "G13",
+          'location': "55.8947967, -4.3668728",
           'date' : timezone.now(),
           'category': 'bad-parking'
           },
@@ -32,7 +32,7 @@ def populate():
           'description': "I am furious!! Imagine the audacity at the actual \
           center of Glasgow!!",
           'photo': 'blank',
-          'location': "G1",
+          'location': "55.8589193, -4.2589934",
           'date' : timezone.now(),
           'category': 'general-jams'
           },
