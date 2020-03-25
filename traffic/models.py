@@ -8,7 +8,7 @@ class Posts(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='post_images', blank=True)
     description = models.CharField(max_length=300)
-    location = models.CharField(max_length=3)
+    location = models.CharField(max_length=50, unique=False)
     date = models.DateTimeField(auto_now_add=True, blank=True) 
     category = models.CharField(choices = POST_CATEGORIES, max_length=25, default = 'general-jams')
     slug = models.SlugField()

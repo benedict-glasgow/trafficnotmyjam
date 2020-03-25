@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from traffic.models import Posts, Comments
 from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm, ChangePasswordForm
 from traffic.multichoice import POST_CATEGORIES
+import json
+from traffic.bingCoordinates import getCoordinates
 #from django import template
 #register = template.Library()
 
@@ -16,7 +18,7 @@ def index(request):
     
     contextDict = {}
     contextDict["posts"] = postsList
-    return render(request, 'traffic/index.html', context=contextDict)
+    return render(request, 'traffic/indexTesting.html', context=contextDict)
 
 
 
@@ -136,6 +138,10 @@ def addPost(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
+
+            location = getCoordinates(post.location)
+            post.location = location
+
             post.save()
             return redirect('/')
         else:
