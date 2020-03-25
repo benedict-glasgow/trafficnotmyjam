@@ -1,26 +1,35 @@
-<!DOCTYPE html>
-    <head>
-        <title>Write Post</title>
-    </head>
-    
-    <body>
-        <h1>Write a Post</h1>
-            <div>
-                <form id="addPosts" method="post" action="/addPosts/">
-                     {% csrf_token %}
-                     {% for hidden in form.hidden_fields %}
-                         {{ hidden }}
-                     {% endfor %}
-                     {% for field in form.visible_fields %}
-                         {{ field.errors }}
-                         {{ field.help_text }}
-                         {{ field }}
-                     {% endfor %}
-                     <input type="submit" name="submit" value="Write Post" />
-                </form>
-            <div>
-    </body>
-</html>
+{% extends 'traffic/base.html' %}
+
+{% block topbar %}
+<div id="home-navbar" class="contextbox">
+	<a href="{% url 'traffic:index'">HOME</a>
+	<a href="{% url 'traffic:about'">ABOUT</a>
+</div>
+{% endblock %}
+
+{% block left_body_block %}
+    <div id="l-block" class="contentbox">
+		<strong>-- WRITE A POST--</strong>
+        <form id="addPosts" method="post" action= "/addposts/">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+            {% endfor %}
+            {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                    {{ field }}<br/>
+            {% endfor %}
+            <input type="submit" name="submit" value="Write Post" />
+        </form>
+	</div>
+{% endblock %}
+
+{% block right_body_block %}
+	<div id="r-block" class="contentbox">
+	</div>
+{% endblock %}
+
                      
             
 

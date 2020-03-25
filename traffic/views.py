@@ -1,7 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
+from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from traffic.models import Posts, Comments
-from traffic.forms import SearchForm, PostsForm
+from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm
+from traffic.multichoice import POST_CATEGORIES
+#from django import template
+#register = template.Library()
 
 def index(request):
     
@@ -12,6 +18,8 @@ def index(request):
     return render(request, 'traffic/index.html', context=contextDict)
 
 
+
+#@register.inclusion_tag('writeComment.html')
 def post(request, postSlug):
     contextDict = {}
     
@@ -19,17 +27,19 @@ def post(request, postSlug):
         post = Posts.objects.get(slug=postSlug)
         comments = Comments.objects.filter(post=post)
         contextDict['post'] = post
+        contextDict['commentform'] = CommentsForm()
         if comments.exists():
             contextDict['comments'] = comments
         else:
             contextDict['comments'] = None
+            
     except Posts.DoesNotExist:
         contextDict['post'] = None
         contextDict['comments'] = None
     except: Comments.DoesNotExist
-
-
-    return render(request, 'traffic/post.html', context=contextDict)
+    
+    
+    return render(request, 'traffic/post.html', context=contextDict) #postTesting.html removed
 
 
 def information(request):
@@ -54,20 +64,12 @@ def FAQ(request):
 def categories(request):
     contextDict = {}
 
-    slugs = Posts.objects.values('categorySlug').distinct()
     categories = []
 
-    if slugs.exists():
-        for slug in slugs:
-            ## Get a name of the category for each slug:
-            categories += Posts.objects.filter(categorySlug=slug['categorySlug']).values('category').distinct()
-
-        print(categories, list(slugs))
-        contextDict['categories'] = zip(categories, slugs)
-        
-    else:
-        contextDict['categories'] = None
-
+    for category in POST_CATEGORIES:
+        categories += [ {'slug':category[0], 'name':category[1] } ]
+    
+    contextDict['categories'] = categories
 
     return render(request, 'traffic/categoriesTesting.html', context=contextDict)
 
@@ -75,7 +77,7 @@ def categories(request):
 def category(request, categorySlug):
     contextDict = {}
 
-    posts = Posts.objects.filter(categorySlug=categorySlug)
+    posts = Posts.objects.filter(category=categorySlug)
 
     if posts.exists():
         contextDict['posts'] = posts
@@ -106,12 +108,18 @@ def searchResult(request, searchQuery):
 
     contextDict['query'] = searchQuery
 
-    posts = Posts.objects.filter(title=searchQuery)
+    posts = Posts.objects.filter(title__icontains=searchQuery)
+    comments = Comments.objects.filter(content__icontains=searchQuery)
 
     if posts.exists():
         contextDict['posts'] = posts
     else:
         contextDict['posts'] = None
+
+    if comments.exists():
+        contextDict['comments'] = comments
+    else:
+        contextDict['comments'] = None
 
     return render(request, 'traffic/searchResultTesting.html', contextDict)
     # return render(request, 'traffic/results.html', contextDict) Not sure which html page to lead to?
@@ -130,8 +138,92 @@ def addPosts(request):
             
     return render(request, 'traffic/writePosts.html', {'form': form})
 
+def addComments(request):#,pk
+    #post= get_object_or_404(Posts, pk=pk)
+    form = CommentsForm()
+    
+    if request.method =='POST':
+        form = CommentsForm(request.POST)
         
+        if form.is_valid():
+            #form.post = post
+            #post= get_object_or_404(Posts, pk=pk)
+            #form.post = post
+            form.save(commit=True)
+            return redirect('/')
+        else:
+            print(form.errors)
+            
+    return render(request, 'traffic/post.html', {'form': form})
 
+def register(request):
+    contextDict = {}
+
+    registered = False
+
+    if request.method == 'POST':
+        userForm = UserForm(request.POST)
+        userProfileForm = UserProfileForm(request.POST)
+
+        if userForm.is_valid() and userProfileForm.is_valid():
+
+            user = userForm.save()
+            user.set_password(user.password)
+            user.save()
+
+            ## The UserProfile models are set up for future expansion
+
+            profile = userProfileForm.save(commit=False)
+            profile.user = user
+            profile.save()
+
+            registered = True
+
+        else:
+            print(userForm.errors, userProfileForm.errors)
+
+    else:
+        userForm = UserForm()
+        userProfileForm = UserProfileForm()
+
+    contextDict['userForm'] = userForm
+    contextDict['userProfileForm'] = userProfileForm
+    contextDict['registered'] = registered
+
+    return render(request, 'traffic/registrationTesting.html', context=contextDict)
+
+
+def userLogin(request):
+
+    if request.method == 'POST':
+
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect(reverse('traffic:index'))
+
+            else:
+                HttpResponse("This account is disabled!")
+
+        
+        else:
+            print(f'Invalid login details {username} {password} ')
+            return HttpResponse("Invalid log in details!")
+
+    else:
+        return render(request, 'traffic/loginTesting.html')
+
+
+@login_required
+def userLogout(request):
+    logout(request)
+    return redirect(reverse('traffic:index'))
    
 
     

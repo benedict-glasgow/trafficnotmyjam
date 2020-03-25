@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 
 import django
 django.setup()
-from traffic.models import Posts,User,Comments,Reactions
+from traffic.models import Posts, UserProfile, Comments, Reactions, User
 
 
 from django.utils import timezone
@@ -19,14 +19,14 @@ def populate():
           'photo': 'blank',
           'location': "G12",
           'date' : timezone.now(),
-          'category': "Bad Parking"
+          'category': 'how-not-to-drive'
           },
         { 'title': "Are you kidding me?",
           'description': "no",
           'photo': 'blank',
           'location': "G13",
           'date' : timezone.now(),
-          'category': "Bad Parking"
+          'category': 'bad-parking'
           },
         { 'title': "SERIOUSLY",
           'description': "I am furious!! Imagine the audacity at the actual \
@@ -34,7 +34,7 @@ def populate():
           'photo': 'blank',
           'location': "G1",
           'date' : timezone.now(),
-          'category': "Bad Parking"
+          'category': 'general-jams'
           },
         ]
     userData = [{'username' : 'Jenny',

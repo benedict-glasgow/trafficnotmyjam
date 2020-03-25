@@ -25,24 +25,30 @@
 {% block bottombar%}
 <div id="bottombar" class="contentbox">
 	<div>
-		Found at: {{ post.dateAndTime }}
+		Found at: {{ post.date }} <br/>
 		Category: {{ post.category }} <br/>
-		Description: {{ post.description }}
+		Description: {{ post.description }}<br/>
 		<div>
-			--RATING--
+			--RATING--<br/>
 		</div>
 	</div>
+	
+	
 	<div>
-		--COMMENTS--
-		<div>
-			--MAKE COMMENTS--
-		</div>
+	</div>
+		--COMMENTS--<br/>
 		{% if comments %}
 		{% for comment in comments %} 
-		{{ comment.date }} <br/>
-		{{ comment.content }} <br/>
+    		{{ comment.date }} <br/>
+    		{{ comment.content }} <br/>
 		{% endfor %}
 		{% endif %}
+	<div>
+		--MAKE COMMENTS--<br/>
+        {% for form in commentform %}
+          FORM
+        {% endfor %}
+
 	</div>
 </div>
 {% endblock %}

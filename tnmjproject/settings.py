@@ -123,5 +123,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = 'traffic:login'
 
 STATICFILES_DIRS = [STATIC_DIR,]

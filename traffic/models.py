@@ -1,39 +1,42 @@
 from django.db import models
+from traffic.multichoice import POST_CATEGORIES
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 
 class Posts(models.Model):
-    title = models.CharField(max_length=30, unique=True)
+    title = models.CharField(max_length=30, unique=False)
     photo = models.ImageField(upload_to='post_images', blank=True)
     description = models.CharField(max_length=300)
     location = models.CharField(max_length=3)
-    date = models.DateTimeField(auto_now_add=True, blank=True) ## Changed to date to stay consitent 
-    category = models.CharField(max_length=30) ## fixed lowercase
-    slug = models.SlugField()#unique=True
-    categorySlug = models.SlugField(unique=False, default = '')
+    date = models.DateTimeField(auto_now_add=True, blank=True) 
+    category = models.CharField(choices = POST_CATEGORIES, max_length=25, default = 'general-jams')
+    slug = models.SlugField()
     
-    #CharField(max_length=300)
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        self.categorySlug = slugify(self.category)
+        if self.slug == '':
+            self.slug = slugify(self.title) + str( Posts.objects.filter(slug__regex=r'{}'.format(slugify(self.title)) ).count() )
         super(Posts, self).save(*args, **kwargs)
     
     def __str__(self):
         return self.title
     
 class Comments(models.Model):
-    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE,related_name = 'comments')
     date = models.DateTimeField(auto_now_add=True, blank=True)
     content = models.CharField(max_length=300)
+    
+    class Meta:
+        ordering = ['date']
     
     def __str__(self):
         return self.content
     
-class User(models.Model):
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
-    
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ## A Placeholder model in case we want to add more fields for users
+    ## The username and password fields are handled by the built in User model
     def __str__(self):
-        return self.username
+        return self.user.username
     
 class Reactions(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE)
