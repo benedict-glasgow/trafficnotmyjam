@@ -121,8 +121,8 @@ def searchResult(request, searchQuery):
     else:
         contextDict['comments'] = None
 
-    return render(request, 'traffic/searchResultTesting.html', contextDict)
-    # return render(request, 'traffic/results.html', contextDict) Not sure which html page to lead to?
+    #return render(request, 'traffic/searchResultTesting.html', contextDict) Not sure which html page to lead to?
+    return render(request, 'traffic/results.html', contextDict) 
 
 def addPosts(request):
     form = PostsForm()

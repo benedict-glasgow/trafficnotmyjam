@@ -1,6 +1,7 @@
 {% extends 'traffic/base.html' %}
 
 {% block topbar %}
+<div class="contentbox" id="topbar">
 	<form id="searchForm" method="post" action="/search/">
 		{% csrf_token %}
 		{{ form.search.errors }}
@@ -8,4 +9,5 @@
 		{{ form.search }} 
 		<input type="submit" name="submit" value="Search" />
 	</form>
+</div>
 {% endblock %}
