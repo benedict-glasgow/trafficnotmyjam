@@ -1,0 +1,19 @@
+<strong>{{ user.username }}</strong> <br/>
+
+<em> Posts: </em> <br/>
+{% for post in posts %} 
+    {{ post.title }} <br/>
+{% endfor %}
+<br/>
+<em>Comments:</em> <br/>
+{% for comment in comments %}
+    {{ comment.content }} <br/>
+{% endfor %}
+
+<em> Change Password: </em> <br/>
+
+<form id="UpdateDetailsForm" method="POST" action="/account/changepassword/" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ updateDetailsForm.as_p }}
+    <input type="submit" name="submit" value="Change Password" />
+</form>

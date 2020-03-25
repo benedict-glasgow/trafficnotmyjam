@@ -48,3 +48,12 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = tuple()
+
+
+class ChangePasswordForm(forms.Form):
+    oldPassword = forms.CharField(widget=forms.PasswordInput)
+    newPassword = forms.CharField(widget=forms.PasswordInput)
+    repeatNewPassword = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        fields = ('oldPassword', 'newPassword', 'RepeatNewPassword',)

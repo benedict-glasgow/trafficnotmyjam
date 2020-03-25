@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class Posts(models.Model):
     title = models.CharField(max_length=30, unique=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='post_images', blank=True)
     description = models.CharField(max_length=300)
     location = models.CharField(max_length=3)
@@ -22,6 +23,7 @@ class Posts(models.Model):
     
 class Comments(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE,related_name = 'comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     content = models.CharField(max_length=300)
     
