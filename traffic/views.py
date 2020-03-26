@@ -201,7 +201,7 @@ def register(request):
     contextDict['userProfileForm'] = userProfileForm
     contextDict['registered'] = registered
 
-    return render(request, 'traffic/registrationTesting.html', context=contextDict)
+    return render(request, 'traffic/register.html', context=contextDict)
 
 
 def userLogin(request):
@@ -228,7 +228,7 @@ def userLogin(request):
             return HttpResponse("Invalid log in details!")
 
     else:
-        return render(request, 'traffic/loginTesting.html')
+        return render(request, 'traffic/login.html')
 
 
 @login_required

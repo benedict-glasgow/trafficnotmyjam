@@ -1,0 +1,19 @@
+{% extends 'traffic/base.html' %}
+
+{% block left_body_block %}
+    <div id="l-block" class="contentbox">
+        <br/>
+        <strong> Registration </strong> 
+        <br/>
+        {% if registered %}
+            <em> Registration successful! </em>
+        {% else %}
+            <form id="UserForm" method="POST" action="/register/" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{ userForm.as_p }}
+                {{ userProfileForm.as_p }}
+                <input type="submit" name="submit" value="Register" />
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

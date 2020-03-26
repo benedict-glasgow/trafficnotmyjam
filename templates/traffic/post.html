@@ -4,21 +4,55 @@
 <div id="topbar" class="contentbox">
 {{ post.title }}
 <div id="postnav">
-	<a href="{% url ''">◄</a>
-	<a href="{% url ''">►</a>
+	<a href="{% url 'traffic:index'">◄</a>
+	<a href="{% url 'traffic:index'">►</a>
 </div>
 </div>
 {% endblock %}
 
 {% block left_body_block %}
 	<div id="l-block" class="contentbox">
-		<strong>{{ post.photo }}</strong>
+		<img src="{{ post.photo }}" alt="Post Image Unavailable">
 	</div>
 {% endblock %}
 
 {% block right_body_block %}
 	<div id="r-block" class="contentbox">
-		<strong>{{ post.location }}</strong>
+		{{ post.location }}
+		<div id="map">
+			<script type="text/javascript">
+				function GetMap(){
+					var map = new Microsoft.Maps.Map('#map', { 
+							credentials: 'AuJ09npEnmthbBSxKu6teNImwt-6ZIn83affPp-nyUTAfXypqFl12jmF_SFV0IO6',
+							center: new Microsoft.Maps.Location(55.8554403, -4.3024976),
+							mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+							zoom: 10
+						});
+		
+						{% for post in posts %}
+		
+							{% if post.location %}
+		
+							{
+		
+								var location = new Microsoft.Maps.Location({{ post.location }})
+								var pin = new Microsoft.Maps.Pushpin( location, {
+									title: '{{ post.title }}',
+									subTitle: '{{ post.description }} ',
+									});
+		
+								map.entities.push(pin);
+		
+							}
+		
+							{% endif %}
+		
+						{% endfor %}
+		
+				}
+			</script>
+			<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+		</div>
 	</div>
 {% endblock %}
 

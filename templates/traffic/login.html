@@ -1,0 +1,21 @@
+{% extends 'traffic/base.html' %}
+
+{% block left_body_block %}
+    <div id="l-block" class="contentbox">
+        <br/>
+        <strong> Login </strong> 
+        <br/><br/>
+        <form id="loginForm" method="POST" action="{% url 'traffic:login' %}">
+            {% csrf_token %}
+            
+            Username: 
+            <input type="text" name="username" value="" size="50" /> 
+            <br/><br/>
+            Password: 
+            <input type="password" name="password" value="" size="50" /> 
+            <br/><br/>
+            
+            <input type="submit" name="submit" value="Submit" />
+        </form>
+    </div>
+{% endblock %}

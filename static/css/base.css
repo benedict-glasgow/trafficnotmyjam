@@ -55,8 +55,9 @@ body{
 	text-align: right;
 }
 #bottombar{
+	float:left;
+	margin-top: 10px;
 	padding-left:5%;
-	margin-top: 300px;
 	margin-bottom: 10px;
 	
 	text-align: left;
@@ -82,6 +83,10 @@ body{
 	
 	text-align: center;
 	font-size: 1.1em;
+}
+div.contextbox a{
+	margin-left:5px;
+	margin-right:5px;
 }
 
 #home-navbar{
@@ -150,4 +155,14 @@ div.contentbox a:hover{
 }
 #posttitle{
 	font-size:1.1em;
+}
+#fieldhelp{
+	float:left;
+	width: 45%;
+	font-style:italic;
+	font-size: 0.9em;
+}
+#field{
+	float:right;
+	width: 55%;
 }

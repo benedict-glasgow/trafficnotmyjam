@@ -5,9 +5,6 @@
     <em> Registration successful! </em>
 
 {% else %}
-
-    Registration Form: <br/>
-
     <form id="UserForm" method="POST" action="/register/" enctype="multipart/form-data" >
         {% csrf_token %}
         {{ userForm.as_p }}
