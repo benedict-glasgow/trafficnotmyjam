@@ -31,7 +31,7 @@ def populate():
         { 'title': "SERIOUSLY",
           'description': "I am furious!! Imagine the audacity at the actual \
           center of Glasgow!!",
-          'photo': 'blank',
+          'photo': '{{ MEDIA_URL }}cyclelanes.jpg', 
           'location': "55.8589193, -4.2589934",
           'date' : timezone.now(),
           'category': 'general-jams'

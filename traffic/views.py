@@ -21,30 +21,20 @@ def index(request):
     return render(request, 'traffic/index.html', context=contextDict)
 
 def post(request, postSlug):
-    #contextDict = {}
-    
-    #try:
-        #post = Posts.objects.get(slug=postSlug)
-    print("test")
+   
     post = get_object_or_404(Posts, slug=postSlug)
     user = request.user
     comments = Comments.objects.filter(post=post)
-        #contextDict['post'] = post
-        #contextDict['commentform'] = CommentsForm()
+     
     if comments.exists():
-           # contextDict['comments'] = comments
         comments = comments
     else:
-            #contextDict['comments'] = None
         comments = None
             
       
-        
-        #contextDict['currentComment'] = None
     currentComment = None
         
     if request.method == 'POST':
-            #contextDict['commentform']  = CommentsForm(data=request.POST)
         commentForm = CommentsForm(data=request.POST)
         if commentForm.is_valid():
             currentComment = commentForm.save(commit=False)
@@ -52,21 +42,14 @@ def post(request, postSlug):
             currentComment.user = user
             currentComment.save()
     else:
-            #contextDict['commentform'] = CommentsForm()
+            
         commentForm = CommentsForm()
             
-    #except Posts.DoesNotExist:
-        #contextDict['post'] = None
-       # post = None
-        #contextDict['comments'] = None
-        #comments = None
-    #except: Comments.DoesNotExist
-    
     
     return render(request, 'traffic/post.html',  {'post': post,
                    'comments': comments,
                    'currentComment': currentComment,
-                   'commentForm': commentForm}) #postTesting.html removed / context=contextDict
+                   'commentForm': commentForm}) 
 
 
 def information(request):

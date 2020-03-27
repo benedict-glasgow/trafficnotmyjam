@@ -10,6 +10,11 @@
 
 {% block left_body_block %}
 	<div id="l-block" class="contentbox">
+	{% if user.is_authenticated %}
+    	Welcome Back {{user.username}}! Check Out The Latest Jams ...
+    {% else %}
+        Check Out The Latest Jams ...
+	{% endif %}
 		{% for post in posts %}
 		<div class="postbox">
 			<div id="posttitle"><strong><a href="/post/{{ post.slug }}/">{{ post.title }}</a></strong> </div>
