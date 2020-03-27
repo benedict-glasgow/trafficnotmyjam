@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from traffic.models import Posts, Comments
-from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm
+from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm, ChangePasswordForm
 from traffic.multichoice import POST_CATEGORIES
+import json
+from traffic.bingCoordinates import getCoordinates
 #from django import template
 #register = template.Library()
 
@@ -121,17 +124,25 @@ def searchResult(request, searchQuery):
     else:
         contextDict['comments'] = None
 
-    return render(request, 'traffic/searchResultTesting.html', contextDict)
-    # return render(request, 'traffic/results.html', contextDict) Not sure which html page to lead to?
+    #return render(request, 'traffic/searchResultTesting.html', contextDict) Not sure which html page to lead to?
+    return render(request, 'traffic/results.html', contextDict) 
 
-def addPosts(request):
+
+@login_required
+def addPost(request):
     form = PostsForm()
     
     if request.method =='POST':
         form = PostsForm(request.POST)
         
         if form.is_valid():
-            form.save(commit=True)
+            post = form.save(commit=False)
+            post.user = request.user
+
+            location = getCoordinates(post.location)
+            post.location = location
+
+            post.save()
             return redirect('/')
         else:
             print(form.errors)
@@ -190,7 +201,7 @@ def register(request):
     contextDict['userProfileForm'] = userProfileForm
     contextDict['registered'] = registered
 
-    return render(request, 'traffic/registrationTesting.html', context=contextDict)
+    return render(request, 'traffic/register.html', context=contextDict)
 
 
 def userLogin(request):
@@ -217,7 +228,7 @@ def userLogin(request):
             return HttpResponse("Invalid log in details!")
 
     else:
-        return render(request, 'traffic/loginTesting.html')
+        return render(request, 'traffic/login.html')
 
 
 @login_required
@@ -226,7 +237,50 @@ def userLogout(request):
     return redirect(reverse('traffic:index'))
    
 
-    
+@login_required
+def account(request):
+    user = request.user
+
+    contextDict = { 'posts': None, 'comments': None}
+
+    posts = Posts.objects.order_by('-date').filter(user=user)
+    if posts.exists():
+        contextDict['posts'] = posts
+
+    comments = Comments.objects.order_by('-date').filter(user=user)
+    if comments.exists():
+        contextDict['comments'] = comments
+
+    contextDict['updateDetailsForm'] = ChangePasswordForm()
+
+    return render(request, 'traffic/accountTesting.html', context=contextDict)
+
+
+
+@login_required
+def changePassword(request):
+    if request.method == 'POST':
+
+        oldPassword = request.POST.get('oldPassword')
+        newPassword = request.POST.get('newPassword')
+        repeatNewPassword = request.POST.get('repeatNewPassword')
+
+        correctPassword = check_password(oldPassword, request.user.password)
+
+        if correctPassword:
+            if newPassword == repeatNewPassword:
+                request.user.set_password(newPassword)
+                request.user.save()
+                return redirect(reverse('traffic:account'))
+
+            else:
+                return HttpResponse('Invalid details')
+            
+        else:
+            return HttpResponse('Invalid details')
+
+    else:
+        redirect(reverse('traffic:account'))
 
 
 

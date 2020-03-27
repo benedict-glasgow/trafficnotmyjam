@@ -2,20 +2,59 @@
 
 {% block topbar %}
 <div id="home-navbar" class="contextbox">
-	<a href="{% url 'traffic:index'">HOME</a>
-	<a href="{% url 'traffic:about'">ABOUT</a>
-	<a href="{% url 'traffic:addPosts'">WRITE POST</a> <!--just for testing will remove-->
+	<a href="{% url 'traffic:index' %}">HOME</a>
+	<a href="{% url 'traffic:about' %}">ABOUT</a>
+	<a href="{% url 'traffic:addposts' %}">POST</a>
 </div>
 {% endblock %}
 
 {% block left_body_block %}
 	<div id="l-block" class="contentbox">
-		<strong>-- POSTS FEED --</strong>
+		{% for post in posts %}
+		<div class="postbox">
+			<div id="posttitle"><strong><a href="/post/{{ post.slug }}/">{{ post.title }}</a></strong> </div>
+			<div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }} at {{ post.dateAndTime }} in {{ post.location }} </div>
+			<div id="postimg"> <img src="{{ post.photo }}" alt="Post Image Unavailable"> </div>
+		</div>
+		{% endfor %}
 	</div>
 {% endblock %}
 
 {% block right_body_block %}
 	<div id="r-block" class="contentbox">
-		<strong>-- MAP --</strong>
+		<div id="map">
+			<script type="text/javascript">
+				function GetMap(){
+					var map = new Microsoft.Maps.Map('#map', { 
+							credentials: 'AuJ09npEnmthbBSxKu6teNImwt-6ZIn83affPp-nyUTAfXypqFl12jmF_SFV0IO6',
+							center: new Microsoft.Maps.Location(55.8554403, -4.3024976),
+							mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+							zoom: 10
+						});
+		
+						{% for post in posts %}
+		
+							{% if post.location %}
+		
+							{
+		
+								var location = new Microsoft.Maps.Location({{ post.location }})
+								var pin = new Microsoft.Maps.Pushpin( location, {
+									title: '{{ post.title }}',
+									subTitle: '{{ post.description }} ',
+									});
+		
+								map.entities.push(pin);
+		
+							}
+		
+							{% endif %}
+		
+						{% endfor %}
+		
+				}
+			</script>
+			<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+		</div>
 	</div>
 {% endblock %}

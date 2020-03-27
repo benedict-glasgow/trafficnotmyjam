@@ -11,8 +11,8 @@ class PostsForm(forms.ModelForm):
     photo = forms.ImageField(help_text= "Upload an Image :",required=False)
     description = forms.CharField(max_length=300, 
                             help_text="Describe your jam :")
-    location = forms.CharField(max_length=3, 
-                            help_text="Enter up to the first three characters of a post code :")
+    location = forms.CharField(max_length=50, 
+                            help_text="Enter up to the first three characters of a post code :", required=False)
     date = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
     category = forms.ChoiceField(choices = POST_CATEGORIES, widget=forms.Select(),help_text= "Select a Category :", required=True)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -48,3 +48,12 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = tuple()
+
+
+class ChangePasswordForm(forms.Form):
+    oldPassword = forms.CharField(widget=forms.PasswordInput)
+    newPassword = forms.CharField(widget=forms.PasswordInput)
+    repeatNewPassword = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        fields = ('oldPassword', 'newPassword', 'RepeatNewPassword',)

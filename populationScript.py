@@ -17,14 +17,14 @@ def populate():
         { 'title': "Dont be rude",
           'description': "I'm gonna hurt you, I swear to God",
           'photo': 'blank',
-          'location': "G12",
+          'location': "55.8816012, -4.3175199",
           'date' : timezone.now(),
           'category': 'how-not-to-drive'
           },
         { 'title': "Are you kidding me?",
           'description': "no",
           'photo': 'blank',
-          'location': "G13",
+          'location': "55.8947967, -4.3668728",
           'date' : timezone.now(),
           'category': 'bad-parking'
           },
@@ -32,19 +32,19 @@ def populate():
           'description': "I am furious!! Imagine the audacity at the actual \
           center of Glasgow!!",
           'photo': 'blank',
-          'location': "G1",
+          'location': "55.8589193, -4.2589934",
           'date' : timezone.now(),
           'category': 'general-jams'
           },
         ]
     userData = [{'username' : 'Jenny',
-                   'password': 'test1'
+                   'password': 'test1test2'
                    },
                   {'username' : 'Mark',
-                   'password': 'test2'
+                   'password': 'test2test3'
                    },
                    {'username' : 'Gary',
-                   'password': 'test3'
+                   'password': 'test3test4'
                    },
     
             ]
@@ -63,15 +63,22 @@ def populate():
                       'count':100},
                       ]
 
+
+
+    for user in userData:
+        u = addUser(user['username'],user['password'])
+        addUserProfile(u)
+
+
     for post in postsData:
-        p = addPosts(post['title'], post['description'], post['photo'],
+        p = addPosts(post['title'], User.objects.order_by('?').first(), post['description'], post['photo'],
                  post['location'],post['date'], post['category']) 
-    for comment in commentsData:
-        addComment(p, comment['content'])
+
     for reaction in reactionsData:
         addReactions(p, reaction['name'],reaction['count'])
-    for user in userData:
-        addUser(user['username'],user['password'])
+
+    for comment in commentsData:
+        addComment(p, User.objects.order_by('?').first(), comment['content'])
     
     print("Posts :")
     for p in Posts.objects.all():
@@ -88,18 +95,24 @@ def populate():
     
 
 
-def addPosts(title, description, photo, location,date, category): 
-    post = Posts.objects.get_or_create(title=title, description=description, photo=photo, location=location,date=date, category=category)[0]
+def addPosts(title, user, description, photo, location,date, category): 
+    post = Posts.objects.get_or_create(title=title, user=user, description=description, photo=photo, location=location,date=date, category=category)[0]
     post.save()
     return post
 
-def addUser(username,password):
+def addUser(username, password):
     user = User.objects.get_or_create(username=username, password = password)[0]
+    user.set_password(user.password)
     user.save()
     return user
 
-def addComment(post,content):
-    comment = Comments.objects.get_or_create(post=post, content=content)[0]
+def addUserProfile(user):
+    userProfile = UserProfile.objects.get_or_create(user=user)[0]
+    userProfile.save()
+    return userProfile
+
+def addComment(post, user, content):
+    comment = Comments.objects.get_or_create(post=post, content=content, user=user)[0]
     comment.save()
     return comment
 

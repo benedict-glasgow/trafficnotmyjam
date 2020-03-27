@@ -1,9 +1,60 @@
-{% for post in posts %}
-{{ post.title }} <br/>
-{{ post.photo }} <br/>
-{{ post.description }} <br/>
-{{ post.location }} <br/>
-{{ post.dateAndTime }} <br/>
-{{ post.category }} <br/>
-{{ post.slug }} <br/>
-{% endfor %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <style>
+            #map {
+                height: 400px;
+                width: 400px;
+                position: relative;
+            }
+        </style>
+    </head>
+
+    {% for post in posts %}
+    {{ post.title }} <br />
+    {{ post.user.username }} <br />
+    {{ post.photo }} <br />
+    {{ post.description }} <br />
+    {{ post.location }} <br />
+    {{ post.dateAndTime }} <br />
+    {{ post.category }} <br />
+    {{ post.slug }} <br />
+    {% endfor %}
+
+
+    
+    <script type="text/javascript">
+        function GetMap(){
+            var map = new Microsoft.Maps.Map('#map', { 
+                    credentials: 'AuJ09npEnmthbBSxKu6teNImwt-6ZIn83affPp-nyUTAfXypqFl12jmF_SFV0IO6',
+                    center: new Microsoft.Maps.Location(55.8554403, -4.3024976),
+                    mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+                    zoom: 10
+                });
+
+                {% for post in posts %}
+
+                    {% if post.location %}
+
+                    {
+
+                        var location = new Microsoft.Maps.Location({{ post.location }})
+                        var pin = new Microsoft.Maps.Pushpin( location, {
+                            title: '{{ post.title }}',
+                            subTitle: '{{ post.description }} ',
+                            });
+
+                        map.entities.push(pin);
+
+                    }
+
+                    {% endif %}
+
+                {% endfor %}
+
+        }
+    </script>
+<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <div id="map"></div>
+</html>

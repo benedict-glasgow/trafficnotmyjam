@@ -28,8 +28,11 @@
 			{% endblock %}
 		</div>
 		<div id="navbar" class="contextbox">
-			<a href="{% url 'traffic:index'">HOME</a>
-			<a href="{% url 'traffic:about'">ABOUT</a>
+			<a href="{% url 'traffic:index'%}">HOME</a>
+			<a href="{% url 'traffic:about'%}">ABOUT</a>
+			<a href="{% url 'traffic:addposts'%}">POST</a>
+			<a href="{% url 'traffic:login'%}">LOGIN</a>
+			<a href="{% url 'traffic:register'%}">REGISTER</a>
 		</div>
 	</body>
 </html>

@@ -37,27 +37,41 @@ body{
 	font-size: 1.2em;
 }
 #l-block{
+	margin-left:2%;
 	padding-left:5%;
+	padding-bottom: 25px;
 	float: left;
 	width: 43%;
-	height: 250px;
 	
 	text-align: left;
 }
 #r-block{
-	padding-right:5%;
+	margin-right:2%;
+	padding:10px;
 	float: right;
 	width: 43%;
-	height: 250px;
+	height: 400px;
 	
 	text-align: right;
 }
 #bottombar{
+	float:left;
+	margin-top: 10px;
+	padding-left:5%;
+	margin-bottom: 10px;
+	
+	text-align: left;
+}
+#bottombar-lone{
+	position: relative;
+	top: -290px;
 	padding-left:5%;
 	margin-top: 300px;
 	margin-bottom: 10px;
 	
 	text-align: left;
+	
+	
 }
 #navbar{
 	position:fixed;
@@ -69,6 +83,10 @@ body{
 	
 	text-align: center;
 	font-size: 1.1em;
+}
+div.contextbox a{
+	margin-left:5px;
+	margin-right:5px;
 }
 
 #home-navbar{
@@ -90,12 +108,61 @@ body{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	
-	color: white;
+	color: #eeeeee;
 	background-color: #2344a0;
-	border: 5px solid white;	
+	border: 5px solid white;
+	
+}
+div.contentbox a{
+	color: white;
+	
+	text-decoration: none;
+	font-weight: bold;	
+}
+div.contentbox a:hover{
+	color: cyan;
 }
 .contextbox{
+    padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	
 	color: black;
 	background-color: white;
 	border: 5px solid #bf0f0f;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-bottom: 10px;
+}
+.postbox{
+	border: 2px solid white;
+	margin-left: -5%;
+	margin-right: 5%;
+	margin-top: 10px;
+	padding: 5px;
+	overflow:hidden;
+}
+#postimg{
+	float: right;
+	width:29%;
+	border: 1px solid white;
+}
+#postinfo{
+	float:left;
+	width:69%;
+	font-size:0.9em;
+}
+#posttitle{
+	font-size:1.1em;
+}
+#fieldhelp{
+	float:left;
+	width: 45%;
+	font-style:italic;
+	font-size: 0.9em;
+}
+#field{
+	float:right;
+	width: 55%;
 }
