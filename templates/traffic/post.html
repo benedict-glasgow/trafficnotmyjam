@@ -77,26 +77,31 @@
     		{{ comment.content }} <br/>
 		{% endfor %}
 		{% endif %}
+   
 	<div>
-		--MAKE COMMENTS--<br/>
-		{% if new_comment %}
-    		Comment Added!
-		{% else %}
-          <form id="addComments" method="post" action = ".">
-           <!--{{ commentForm.as_p }}-->
-            {% for hidden in commentForm.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in commentForm.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-           {% csrf_token %}
-          <input type = "submit" value= "Post">
-          </form>
+    	{% if user.is_authenticated %}.
+    		--MAKE COMMENTS--<br/>
+    		{% if new_comment %}
+        		Comment Added!
+    		{% else %}
+              <form id="addComments" method="post" action = ".">
+                {% for hidden in commentForm.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in commentForm.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                    {{ field }}
+                {% endfor %}
+               {% csrf_token %}
+              <input type = "submit" value= "Post">
+              </form>
+            {% endif %}
+        {% else %}
+            Sign In Or Register To Make A Comment
         {% endif %}
 
 	</div>
+
 </div>
 {% endblock %}

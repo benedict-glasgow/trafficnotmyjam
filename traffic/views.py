@@ -20,9 +20,6 @@ def index(request):
     contextDict["posts"] = postsList
     return render(request, 'traffic/index.html', context=contextDict)
 
-
-
-#@register.inclusion_tag('writeComment.html')
 def post(request, postSlug):
     #contextDict = {}
     
