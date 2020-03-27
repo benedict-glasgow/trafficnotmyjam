@@ -79,9 +79,23 @@
 		{% endif %}
 	<div>
 		--MAKE COMMENTS--<br/>
-        {% for form in commentform %}
-          FORM
-        {% endfor %}
+		{% if new_comment %}
+    		Comment Added!
+		{% else %}
+          <form id="addComments" method="post" action = ".">
+           <!--{{ commentForm.as_p }}-->
+            {% for hidden in commentForm.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            {% for field in commentForm.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+           {% csrf_token %}
+          <input type = "submit" value= "Post">
+          </form>
+        {% endif %}
 
 	</div>
 </div>

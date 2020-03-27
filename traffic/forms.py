@@ -28,7 +28,7 @@ class CommentsForm(forms.ModelForm):
     # post= get_object_or_404(Posts, pk=pk)
     date = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
     content = forms.CharField(max_length=300, 
-                              help_text="Add a Comment :")
+                             help_text="Add a Comment :" ) 
     
     class Meta:
         model = Comments
