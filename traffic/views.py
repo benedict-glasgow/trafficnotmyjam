@@ -280,7 +280,7 @@ def account(request):
 
     contextDict['updateDetailsForm'] = ChangePasswordForm()
 
-    return render(request, 'traffic/accountTesting.html', context=contextDict)
+    return render(request, 'traffic/account.html', context=contextDict)
 
 
 
