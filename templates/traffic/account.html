@@ -1,0 +1,30 @@
+{% extends 'traffic/base.html' %}
+
+{% block topbar %}
+    <div id="topbar" class="contentbox">User: <strong>{{ user.username }}</strong> <br/></div>
+{% endblock %}
+
+{% block left_body_block %}
+    <div id="l-block" class="contentbox">
+        <strong> Change Password: </strong> <br/>
+        <form id="UpdateDetailsForm" method="POST" action="/account/changepassword/" enctype="multipart/form-data" >
+            {% csrf_token %}
+            {{ updateDetailsForm.as_p }}
+            <input type="submit" name="submit" value="Change Password" />
+        </form>
+    </div>
+{% endblock %}
+
+{% block right_body_block %}
+    <div id="r-block" class="contentbox">
+        <strong> Posts: </strong> <br/>
+        {% for post in posts %} 
+            {{ post.title }} <br/>
+        {% endfor %}
+        <br/>
+        <strong>Comments:</strong> <br/>
+        {% for comment in comments %}
+            {{ comment.content }} <br/>
+        {% endfor %}
+    </div>
+{% endblock %}
