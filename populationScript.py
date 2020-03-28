@@ -16,14 +16,14 @@ def populate():
     postsData = [
         { 'title': "Dont be rude",
           'description': "I'm gonna hurt you, I swear to God",
-          'photo': 'blank',
+          'photo': 'postImages\worstparking.jpg',
           'location': "55.8816012, -4.3175199",
           'date' : timezone.now(),
           'category': 'how-not-to-drive'
           },
         { 'title': "Are you kidding me?",
           'description': "no",
-          'photo': 'blank',
+          'photo': 'postImages\cyclelanes.jpg',
           'location': "55.8947967, -4.3668728",
           'date' : timezone.now(),
           'category': 'bad-parking'
@@ -31,7 +31,7 @@ def populate():
         { 'title': "SERIOUSLY",
           'description': "I am furious!! Imagine the audacity at the actual \
           center of Glasgow!!",
-          'photo': '{{ MEDIA_URL }}cyclelanes.jpg', 
+          'photo': 'postImages\Pothole.jpg', 
           'location': "55.8589193, -4.2589934",
           'date' : timezone.now(),
           'category': 'general-jams'

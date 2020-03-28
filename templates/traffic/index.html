@@ -19,7 +19,7 @@
 		<div class="postbox">
 			<div id="posttitle"><strong><a href="/post/{{ post.slug }}/">{{ post.title }}</a></strong> </div>
 			<div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }} at {{ post.dateAndTime }} in {{ post.location }} </div>
-			<div id="postimg"> <img src="{{ post.photo }}" alt="Post Image Unavailable"> </div>
+			<div id="postimg"> <img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable"> </div>
 		</div>
 		{% endfor %}
 	</div>

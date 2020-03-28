@@ -140,7 +140,7 @@ def addPost(request):
     form = PostsForm()
     
     if request.method =='POST':
-        form = PostsForm(request.POST)
+        form = PostsForm(request.POST,request.FILES)
         
         if form.is_valid():
             post = form.save(commit=False)
