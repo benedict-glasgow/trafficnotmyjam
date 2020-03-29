@@ -4,11 +4,12 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
-from traffic.models import Posts, Comments
+from traffic.models import Posts, Comments,Reactions
 from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm, ChangePasswordForm
 from traffic.multichoice import POST_CATEGORIES
 import json
 from traffic.bingCoordinates import getCoordinates
+from django.views.generic import View
 #from django import template
 #register = template.Library()
 
@@ -288,6 +289,22 @@ def changePassword(request):
 
     else:
         redirect(reverse('traffic:account'))
+        
+class ReactionsView(View):
+    def get(self, request):
+        postId = request.GET['postId']
+        try:
+            reaction = Reactions.objects.get(id=int(postId))
+        except Reactions.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError: 
+            return HttpResponse(-1)
+        
+        reaction.count =  reaction.count + 1
+        reaction.save()
+        
+        return HttpResponse(reaction.count)
+            
 
 
 

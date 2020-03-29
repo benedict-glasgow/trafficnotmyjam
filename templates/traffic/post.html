@@ -51,6 +51,17 @@
 		<div class="infotxt">Description: {{ post.description }}</div>
 		<div>
 			--RATING--<br/>
+		<div> 
+    	Green Lights: <strong id="green_count">{{ reactions.count }}</strong> 
+    	<button id="green_btn" 
+        	data-postid="{{ post.id }}" 
+        	class="btn btn-primary btn-sm" 
+        	type="button"> 
+        	<span data-feather="thumbs-up"></span> 
+        	Green Light 
+        </div>
+        </button>
+    </div>
 		</div>
 	</div>
 	

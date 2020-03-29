@@ -20,7 +20,10 @@ urlpatterns = [
     path('login/', views.userLogin, name='login'),
     path('logout/', views.userLogout, name='logout'),
     path('account/', views.account, name='account'),
-    path('account/changepassword/', views.changePassword, name='changePassword')
+    path('account/changepassword/', views.changePassword, name='changePassword'),
+   # path('greenreaction/', views.ReactionsView.as_view(),name ='greenReaction'),
+   # path('yellowreaction/', views.ReactionsView.as_view(),name ='yellowReaction')
+   path('traffic/reaction/', views.ReactionsView.as_view(),name ='yellowReaction')
     
     #path('<slug:pk>/', indexView.as_view() ,name = 'index'),
 
