@@ -65,8 +65,10 @@ body{
 	float:left;
 	margin-top: 10px;
 	padding-left:5%;
-	margin-bottom: 10px;
-	
+	padding-right:5%;
+	margin-bottom: 10%;
+
+	width:88%;
 	text-align: left;
 }
 #bottombar-lone{
@@ -173,4 +175,21 @@ div.contentbox a:hover{
 #field{
 	float:right;
 	width: 55%;
+}
+
+.infotxt{
+	font-style:italic;
+	font-size:0.9em;
+	color: #cccccc;
+}
+
+#commentdisplaybox{
+	border: solid 1px white ;
+	padding: 10px;
+	margin-bottom:10px;
+}
+#comment{
+	border: dotted 1px white;
+	padding: 5px;
+	margin-bottom: 5px;;
 }

@@ -18,7 +18,7 @@
 		{% for post in posts %}
 		<div class="postbox">
 			<div id="posttitle"><strong><a href="/post/{{ post.slug }}/">{{ post.title }}</a></strong> </div>
-			<div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }} at {{ post.dateAndTime }} in {{ post.location }} </div>
+			<div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }}</div>
 			<div id="postimg"> <img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable"> </div>
 		</div>
 		{% endfor %}
@@ -33,8 +33,8 @@
 					var map = new Microsoft.Maps.Map('#map', { 
 							credentials: 'AuJ09npEnmthbBSxKu6teNImwt-6ZIn83affPp-nyUTAfXypqFl12jmF_SFV0IO6',
 							center: new Microsoft.Maps.Location(55.8554403, -4.3024976),
-							mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-							zoom: 10
+							mapTypeId: Microsoft.Maps.MapTypeId.road,
+							zoom: 11
 						});
 		
 						{% for post in posts %}

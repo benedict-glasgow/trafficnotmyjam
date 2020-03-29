@@ -25,8 +25,8 @@
 					var map = new Microsoft.Maps.Map('#map', { 
 							credentials: 'AuJ09npEnmthbBSxKu6teNImwt-6ZIn83affPp-nyUTAfXypqFl12jmF_SFV0IO6',
 							center: new Microsoft.Maps.Location({{ post.location }}),
-							mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-							zoom: 10
+							mapTypeId: Microsoft.Maps.MapTypeId.road,
+							zoom: 15,
 						});
 
 						var location = new Microsoft.Maps.Location({{ post.location }})
@@ -46,9 +46,9 @@
 {% block bottombar%}
 <div id="bottombar" class="contentbox">
 	<div>
-		Found at: {{ post.date }} <br/>
-		Category: {{ post.category }} <br/>
-		Description: {{ post.description }}<br/>
+		<div class="infotxt">Found at: {{ post.date }}</div>
+		<div class="infotxt">Category: {{ post.category }} </div>
+		<div class="infotxt">Description: {{ post.description }}</div>
 		<div>
 			--RATING--<br/>
 		</div>
@@ -57,17 +57,9 @@
 	
 	<div>
 	</div>
-		--COMMENTS--<br/>
-		{% if comments %}
-		{% for comment in comments %} 
-    		{{ comment.date }} <br/>
-    		{{ comment.content }} <br/>
-		{% endfor %}
-		{% endif %}
-   
-	<div>
+
+	<div id="commentdisplaybox">
     	{% if user.is_authenticated %}
-    		--MAKE COMMENTS--<br/>
     		{% if new_comment %}
         		Comment Added!
     		{% else %}
@@ -76,8 +68,8 @@
                     {{ hidden }}
                 {% endfor %}
                 {% for field in commentForm.visible_fields %}
-                    {{ field.errors }}
-                    {{ field.help_text }}
+					{{ field.errors }}
+                    <strong>{{ field.help_text }}</strong><br/><br/>
                     {{ field }}
                 {% endfor %}
                {% csrf_token %}
@@ -87,7 +79,17 @@
         {% else %}
             Sign In Or Register To Make A Comment
         {% endif %}
-
+	</div>
+	<div id="commentdisplaybox">
+	<strong>Comments</strong><br/><br/>
+	{% if comments %}
+		{% for comment in comments %} 
+			<div id="comment">
+				<div class="infotxt">{{ comment.date }}</div>
+				{{ comment.content }} <br/>
+			</div>
+		{% endfor %}
+	{% endif %}
 	</div>
 
 </div>
