@@ -46,7 +46,6 @@
 								var location = new Microsoft.Maps.Location({{ post.location }})
 								var pin = new Microsoft.Maps.Pushpin( location, {
 									title: '{{ post.title }}',
-									subTitle: '{{ post.description }} ',
 									});
 		
 								map.entities.push(pin);
