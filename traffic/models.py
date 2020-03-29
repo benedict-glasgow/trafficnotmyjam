@@ -11,6 +11,10 @@ class Posts(models.Model):
     location = models.CharField(max_length=50, unique=False)
     date = models.DateTimeField(auto_now_add=True, blank=True) 
     category = models.CharField(choices = POST_CATEGORIES, max_length=25, default = 'general-jams')
+    greenCount =  models.IntegerField(default = 0, blank=True)
+    yellowCount =  models.IntegerField(default = 0, blank=True)
+    redCount =  models.IntegerField(default = 0, blank=True)
+    stopCount =  models.IntegerField(default = 0, blank=True)
     slug = models.SlugField()
     
     def save(self, *args, **kwargs):

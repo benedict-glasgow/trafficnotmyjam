@@ -52,23 +52,53 @@
 		<div>
 			--RATING--<br/>
 		<div> 
-    	Green Lights: <strong id="green_count">{{ reactions.count }}</strong> 
+        Green: <strong id="green_count">{{ post.greenCount }}</strong> 
     	<button id="green_btn" 
         	data-postid="{{ post.id }}" 
         	class="btn btn-primary btn-sm" 
         	type="button"> 
         	<span data-feather="thumbs-up"></span> 
-        	Green Light 
-        </div>
+        	Green
         </button>
+        </div>
+        
+        <div> 
+        Yellow: <strong id="yellow_count">{{ post.yellowCount }}</strong> 
+    	<button id="yellow_btn" 
+        	data-postid="{{ post.id }}" 
+        	class="btn btn-primary btn-sm" 
+        	type="button"> 
+        	<span data-feather="thumbs-up"></span> 
+        	Yellow
+        </button>
+        </div>
+        
+        <div> 
+        Red: <strong id="red_count">{{ post.redCount }}</strong> 
+    	<button id="red_btn" 
+        	data-postid="{{ post.id }}" 
+        	class="btn btn-primary btn-sm" 
+        	type="button"> 
+        	<span data-feather="thumbs-up"></span> 
+        	Red
+        </button>
+        </div>
+        
+        <div> 
+        Stop: <strong id="stop_count">{{ post.stopCount }}</strong> 
+    	<button id="stop_btn" 
+        	data-postid="{{ post.id }}" 
+        	class="btn btn-primary btn-sm" 
+        	type="button"> 
+        	<span data-feather="thumbs-up"></span> 
+        	Stop
+        </button>
+        </div>
+          
     </div>
 		</div>
 	</div>
 	
-	
-	<div>
-	</div>
-
 	<div id="commentdisplaybox">
     	{% if user.is_authenticated %}
     		{% if new_comment %}

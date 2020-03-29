@@ -304,7 +304,66 @@ class ReactionsView(View):
         reaction.save()
         
         return HttpResponse(reaction.count)
+    
+class ReactionsViewGreen(View):
+    def get(self, request):
+        postId = request.GET['postId']
+        try:
+            post = Posts.objects.get(id=int(postId))
+        except Posts.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError: 
+            return HttpResponse(-1)
+        
+        post. greenCount =  post. greenCount + 1
+        post.save()
+        
+        return HttpResponse(post.greenCount)
+    
+class ReactionsViewYellow(View):
+    def get(self, request):
+        postId = request.GET['postId']
+        try:
+            post = Posts.objects.get(id=int(postId))
+        except Posts.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError: 
+            return HttpResponse(-1)
+        
+        post. yellowCount =  post. yellowCount + 1
+        post.save()
+        
+        return HttpResponse(post.yellowCount)
             
+class ReactionsViewRed(View):
+    def get(self, request):
+        postId = request.GET['postId']
+        try:
+            post = Posts.objects.get(id=int(postId))
+        except Posts.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError: 
+            return HttpResponse(-1)
+        
+        post. redCount =  post. redCount + 1
+        post.save()
+        
+        return HttpResponse(post.redCount)
+    
+class ReactionsViewStop(View):
+    def get(self, request):
+        postId = request.GET['postId']
+        try:
+            post = Posts.objects.get(id=int(postId))
+        except Posts.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError: 
+            return HttpResponse(-1)
+        
+        post. stopCount =  post. stopCount + 1
+        post.save()
+        
+        return HttpResponse(post.stopCount)
 
 
 
