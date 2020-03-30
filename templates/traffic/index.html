@@ -1,4 +1,5 @@
 {% extends 'traffic/base.html' %}
+{% load staticfiles %}
 
 {% block left_body_block %}
 	<div id="l-block" class="contentbox">
@@ -19,38 +20,11 @@
 
 {% block right_body_block %}
 	<div id="r-block" class="contentbox">
-		<div id="map">
-			<script type="text/javascript">
-				function GetMap(){
-					var map = new Microsoft.Maps.Map('#map', { 
-							credentials: 'AuJ09npEnmthbBSxKu6teNImwt-6ZIn83affPp-nyUTAfXypqFl12jmF_SFV0IO6',
-							center: new Microsoft.Maps.Location(55.8554403, -4.3024976),
-							mapTypeId: Microsoft.Maps.MapTypeId.road,
-							zoom: 11
-						});
-		
-						{% for post in posts %}
-		
-							{% if post.location %}
-		
-							{
-		
-								var location = new Microsoft.Maps.Location({{ post.location }})
-								var pin = new Microsoft.Maps.Pushpin( location, {
-									title: '{{ post.title }}',
-									});
-		
-								map.entities.push(pin);
-		
-							}
-		
-							{% endif %}
-		
-						{% endfor %}
-		
-				}
-			</script>
-			<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
-		</div>
+		<div id="map" data-centre="glasgow" data-postids="{% for p in posts %} {{ p.id }} {% endfor %}" data-zoom=11 ></div>
 	</div>
+{% endblock %}
+
+{% block additional_resources %}
+	<script src="{% static "js/maps-Bing.js" %}" crossorigin="anonymous"></script>
+	<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 {% endblock %}

@@ -10,6 +10,7 @@ from traffic.multichoice import POST_CATEGORIES
 import json
 from traffic.bingCoordinates import getCoordinates
 from django.views.generic import View
+from django.core import serializers
 #from django import template
 #register = template.Library()
 
@@ -366,6 +367,34 @@ class ReactionsViewStop(View):
         return HttpResponse(post.stopCount)
 
 
+
+class LoadMapView(View):
+
+    def get(self, request):
+        glasgowCoordinates = [ 55.8554403, -4.3024976 ]
+        
+        postIDs = request.GET['postIDs'].split()
+
+        posts = []
+        
+        for postID in postIDs:
+            try:
+                posts += [ { 'title': Posts.objects.get(id=int(postID)).title, 'location': Posts.objects.get(id=int(postID)).location.split(',') }  ]
+            except:
+                pass
+
+        if request.GET['centre'] == 'glasgow':
+            centre = glasgowCoordinates
+        else:
+            try:
+                centre = [ float(posts[0]['location'][0]), float(posts[0]['location'][1]) ]
+            except:
+                centre = glasgowCoordinates
+
+        data = json.dumps({'posts': posts, 'centre': centre} )
+
+        return HttpResponse(data)
+        
 
 
 

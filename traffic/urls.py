@@ -24,7 +24,8 @@ urlpatterns = [
     path('traffic/greenreaction/', views.ReactionsViewGreen.as_view(),name ='green'),
     path('traffic/yellowreaction/', views.ReactionsViewYellow.as_view(),name ='yellow'),
     path('traffic/redreaction/', views.ReactionsViewRed.as_view(),name ='red'),
-    path('traffic/stopreaction/', views.ReactionsViewStop.as_view(),name ='stop')
+    path('traffic/stopreaction/', views.ReactionsViewStop.as_view(),name ='stop'),
+    path('traffic/map/', views.LoadMapView.as_view(), name='loadMap'),
     
     #path('<slug:pk>/', indexView.as_view() ,name = 'index'),
 

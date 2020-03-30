@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() { 
     $('#green_btn').click(function() { 
         var postIdVar; 

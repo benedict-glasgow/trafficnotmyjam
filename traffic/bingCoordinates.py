@@ -18,8 +18,6 @@ def getCoordinates(postCode):
 
     results = response.json()
 
-    print(results['resourceSets'][0]['resources'][0]['point']['coordinates'])
-
     try:
         location = str(results['resourceSets'][0]['resources'][0]['point']['coordinates'][0]) + ', ' + \
             str(results['resourceSets'][0]['resources'][0]['point']['coordinates'][1])
