@@ -5,18 +5,43 @@ img{
 }
 
 a{
-	color: black;
+	color: #00334e;
 	
 	text-decoration: none;
 	font-weight: bold;
 }
 a:hover{
+	color: #bf0f0f;
+}
+
+button{
+	margin: 2px;
+	padding: 5px;
+	border: none;
+	border-radius: 50%;
+	text-align: center;
+	text-decoration: none;
+	background-color: black;
+	color: #00334e;
+	font-size: 1em;
+}
+#red_btn{
 	color: red;
+}
+#yellow_btn{
+	color: orange;
+}
+#green_btn{
+	color: lightgreen;
+}
+#stop_btn{
+	color: white;
+	background-color: red;
 }
 
 body{
-	background-color: #555555;
-	color: white;
+	background-color: #00334e;
+	color: #145374;
 	font-family: "Roboto", "Verdana", "Arial";
 }
 
@@ -113,23 +138,30 @@ div.contextbox a{
 	padding-right: 5%;
 	font-size: 1.1em;
 }
+.imagebox{
+	padding-top:10px;
+}
+#maptop{
+	margin-bottom: 100px;
+}
 .contentbox{
-	padding-top: 10px;
-	padding-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	
-	color: #eeeeee;
-	background-color: #2344a0;
-	border: 5px solid white;
-	
+	color: #e8e8e8;
+	background-color: #00334e;
+	border-left: 5px solid #5588a3;
 }
 div.contentbox a{
-	color: white;
+	color: #e8e8e8;
 	
 	text-decoration: none;
 	font-weight: bold;	
 }
 div.contentbox a:hover{
-	color: cyan;
+	color: #5588a3;
 }
 .contextbox{
     padding-top: 5px;
@@ -138,25 +170,27 @@ div.contentbox a:hover{
 	padding-right: 5px;
 	
 	color: black;
-	background-color: white;
+	background-color: #e8e8e8;
 	border: 5px solid #bf0f0f;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	margin-bottom: 10px;
 }
 .postbox{
-	border: 2px solid white;
+	border-left: 2px solid #e8e8e8;
 	margin-left: -5%;
 	margin-right: 5%;
 	margin-top: 10px;
-	padding: 5px;
+	padding: 15px;
+
+	background-color: #333333;
+
 	overflow:hidden;
 }
 #postimg{
 	float: right;
 	width:29%;
 	height:10%;
-	border: 1px solid white;
 }
 #postinfo{
 	float:left;
@@ -180,16 +214,16 @@ div.contentbox a:hover{
 .infotxt{
 	font-style:italic;
 	font-size:0.9em;
-	color: #cccccc;
+	color: #e8e8e8;
 }
 
 .commentdisplaybox{
-	border: solid 1px white ;
+	border: solid 1px #e8e8e8 ;
 	padding: 10px;
 	margin-bottom:10px;
 }
 #comment{
-	border: dotted 1px white;
+	border: dotted 1px #e8e8e8;
 	padding: 5px;
 	margin-bottom: 5px;
 }
@@ -205,6 +239,12 @@ div.contentbox a:hover{
 }
 #postinfoandratingsbar{
 	margin-bottom: 140px;
+}
+#map{
+	margin-top:50px;
+}
+#mappost{
+	margin-top: -10 px;
 }
 
 
