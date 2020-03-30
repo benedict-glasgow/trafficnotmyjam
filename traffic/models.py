@@ -44,12 +44,5 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
     
-class Reactions(models.Model):
-    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
-    Image = models.ImageField(upload_to='reaction_images', blank=True)
-    count = models.IntegerField(default=0)
-    
-    def __str__(self):
-        return self.name
+
     

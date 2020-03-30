@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
-from traffic.models import Posts, Comments,Reactions
+from traffic.models import Posts, Comments
 from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm, ChangePasswordForm
 from traffic.multichoice import POST_CATEGORIES
 import json
