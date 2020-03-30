@@ -1,5 +1,4 @@
-
-
+//Deals with Green Reaction Button
 $(document).ready(function() { 
     $('#green_btn').click(function() { 
         var postIdVar; 
@@ -9,11 +8,11 @@ $(document).ready(function() {
             {'postId': postIdVar}, 
             function(data) { 
                 $('#green_count').html(data); 
-                $('#green_btn').hide(); 
             })
     });
 });
 
+//Deals with Yellow Reaction Button
 $(document).ready(function() { 
     $('#yellow_btn').click(function() { 
         var postIdVar; 
@@ -23,11 +22,11 @@ $(document).ready(function() {
             {'postId': postIdVar}, 
             function(data) { 
                 $('#yellow_count').html(data); 
-                $('#yellow_btn').hide(); 
             })
     });
 });
 
+//Deals with Red Reaction Button
 $(document).ready(function() { 
     $('#red_btn').click(function() { 
         var postIdVar; 
@@ -37,11 +36,11 @@ $(document).ready(function() {
             {'postId': postIdVar}, 
             function(data) { 
                 $('#red_count').html(data); 
-                $('#red_btn').hide(); 
             })
     });
 });
 
+//Deals with Stop Reaction Button
 $(document).ready(function() { 
     $('#stop_btn').click(function() { 
         var postIdVar; 
@@ -51,7 +50,6 @@ $(document).ready(function() {
             {'postId': postIdVar}, 
             function(data) { 
                 $('#stop_count').html(data); 
-                $('#stop_btn').hide(); 
             })
     });
 });

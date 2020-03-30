@@ -8,13 +8,15 @@
 {% endblock %}
 
 {% block left_body_block %}
-	<div id="l-block" class="contentbox">
-		<img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable">
+	<div id="l-block">
+		<div id="imagebox">
+			<img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable">
+		</div>
 	</div>
 {% endblock %}
 
 {% block right_body_block %}
-	<div id="r-block" class="contentbox">
+	<div id="r-block" >
 		<div id="map" data-centre="{{ post.id }}" data-postids="{{ post.id }}" data-zoom=20 ></div>
 		{{ post.location }}
 	</div>
@@ -31,46 +33,42 @@
 		<div class="commentdisplaybox" id="ratingbox">
 			<strong>Rating</strong>
 			<div> 
-				Green: <strong id="green_count">{{ post.greenCount }}</strong> 
 				<button id="green_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
 					type="button"> 
 					<span data-feather="thumbs-up"></span> 
-					Green
+					{{ post.redCount }}
 				</button>
 			</div>
 		
 			<div> 
-				Yellow: <strong id="yellow_count">{{ post.yellowCount }}</strong> 
 				<button id="yellow_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
 					type="button"> 
 					<span data-feather="thumbs-up"></span> 
-					Yellow
+					{{ post.yellowCount }}
 				</button>
 			</div>
 		
 			<div> 
-				Red: <strong id="red_count">{{ post.redCount }}</strong> 
 				<button id="red_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
 					type="button"> 
 					<span data-feather="thumbs-up"></span> 
-					Red
+					{{ post.redCount }}
 				</button>
 			</div>
 		
 			<div> 
-				Stop: <strong id="stop_count">{{ post.stopCount }}</strong> 
 				<button id="stop_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
 					type="button"> 
 					<span data-feather="thumbs-up"></span> 
-					Stop
+					{{ post.stopCount }}
 				</button>
 			</div>
 		</div>

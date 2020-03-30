@@ -19,8 +19,8 @@
 {% endblock %}
 
 {% block right_body_block %}
-	<div id="r-block" class="contentbox">
-		<div id="map" data-centre="glasgow" data-postids="{% for p in posts %} {{ p.id }} {% endfor %}" data-zoom=11 ></div>
+	<div id="r-block" >
+		<div id="map" class="mapbox" data-centre="glasgow" data-postids="{% for p in posts %} {{ p.id }} {% endfor %}" data-zoom=11 ></div>
 	</div>
 {% endblock %}
 
