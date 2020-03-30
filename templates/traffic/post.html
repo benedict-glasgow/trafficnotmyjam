@@ -4,10 +4,6 @@
 {% block topbar %}
 <div id="topbar" class="contentbox">
 {{ post.title }}
-<div id="postnav">
-	<a href="{% url 'traffic:index'">◄</a>
-	<a href="{% url 'traffic:index'">►</a>
-</div>
 </div>
 {% endblock %}
 
@@ -45,93 +41,92 @@
 
 {% block bottombar%}
 <div id="bottombar" class="contentbox">
-	<div>
-		<div class="infotxt">Found at: {{ post.date }}</div>
-		<div class="infotxt">Category: {{ post.category }} </div>
-		<div class="infotxt">Description: {{ post.description }}</div>
-		<div>
-			--RATING--<br/>
-		<div> 
-        Green: <strong id="green_count">{{ post.greenCount }}</strong> 
-    	<button id="green_btn" 
-        	data-postid="{{ post.id }}" 
-        	class="btn btn-primary btn-sm" 
-        	type="button"> 
-        	<span data-feather="thumbs-up"></span> 
-        	Green
-        </button>
-        </div>
-        
-        <div> 
-        Yellow: <strong id="yellow_count">{{ post.yellowCount }}</strong> 
-    	<button id="yellow_btn" 
-        	data-postid="{{ post.id }}" 
-        	class="btn btn-primary btn-sm" 
-        	type="button"> 
-        	<span data-feather="thumbs-up"></span> 
-        	Yellow
-        </button>
-        </div>
-        
-        <div> 
-        Red: <strong id="red_count">{{ post.redCount }}</strong> 
-    	<button id="red_btn" 
-        	data-postid="{{ post.id }}" 
-        	class="btn btn-primary btn-sm" 
-        	type="button"> 
-        	<span data-feather="thumbs-up"></span> 
-        	Red
-        </button>
-        </div>
-        
-        <div> 
-        Stop: <strong id="stop_count">{{ post.stopCount }}</strong> 
-    	<button id="stop_btn" 
-        	data-postid="{{ post.id }}" 
-        	class="btn btn-primary btn-sm" 
-        	type="button"> 
-        	<span data-feather="thumbs-up"></span> 
-        	Stop
-        </button>
-        </div>
-          
-    </div>
+	<div id="postinfoandratingsbar">
+		<div id="postinfobox">
+			<div class="infotxt">Found at: {{ post.date }}</div>
+			<div class="infotxt">Category: {{ post.category }} </div>
+			<div class="infotxt">Description: {{ post.description }}</div>
+		</div>
+		<div class="commentdisplaybox" id="ratingbox">
+			<strong>Rating</strong>
+			<div> 
+				Green: <strong id="green_count">{{ post.greenCount }}</strong> 
+				<button id="green_btn" 
+					data-postid="{{ post.id }}" 
+					class="btn btn-primary btn-sm" 
+					type="button"> 
+					<span data-feather="thumbs-up"></span> 
+					Green
+				</button>
+			</div>
+		
+			<div> 
+				Yellow: <strong id="yellow_count">{{ post.yellowCount }}</strong> 
+				<button id="yellow_btn" 
+					data-postid="{{ post.id }}" 
+					class="btn btn-primary btn-sm" 
+					type="button"> 
+					<span data-feather="thumbs-up"></span> 
+					Yellow
+				</button>
+			</div>
+		
+			<div> 
+				Red: <strong id="red_count">{{ post.redCount }}</strong> 
+				<button id="red_btn" 
+					data-postid="{{ post.id }}" 
+					class="btn btn-primary btn-sm" 
+					type="button"> 
+					<span data-feather="thumbs-up"></span> 
+					Red
+				</button>
+			</div>
+		
+			<div> 
+				Stop: <strong id="stop_count">{{ post.stopCount }}</strong> 
+				<button id="stop_btn" 
+					data-postid="{{ post.id }}" 
+					class="btn btn-primary btn-sm" 
+					type="button"> 
+					<span data-feather="thumbs-up"></span> 
+					Stop
+				</button>
+			</div>
 		</div>
 	</div>
-	
-	<div id="commentdisplaybox">
-    	{% if user.is_authenticated %}
-    		{% if new_comment %}
-        		Comment Added!
-    		{% else %}
-              <form id="addComments" method="post" action = ".">
-                {% for hidden in commentForm.hidden_fields %}
-                    {{ hidden }}
-                {% endfor %}
-                {% for field in commentForm.visible_fields %}
-					{{ field.errors }}
-                    <strong>{{ field.help_text }}</strong><br/><br/>
-                    {{ field }}
-                {% endfor %}
-               {% csrf_token %}
-              <input type = "submit" value= "Post">
-              </form>
-            {% endif %}
-        {% else %}
-            Sign In Or Register To Make A Comment
-        {% endif %}
+	<div class="commentdisplaybox" id="writecomment">
+			{% if user.is_authenticated %}
+				{% if new_comment %}
+					Comment Added!
+				{% else %}
+				  <form id="addComments" method="post" action = ".">
+					{% for hidden in commentForm.hidden_fields %}
+						{{ hidden }}
+					{% endfor %}
+					{% for field in commentForm.visible_fields %}
+						{{ field.errors }}
+						<strong>{{ field.help_text }}</strong><br/><br/>
+						{{ field }}
+					{% endfor %}
+				   {% csrf_token %}
+				  <input type = "submit" value= "Post">
+				  </form>
+				{% endif %}
+			{% else %}
+				Sign In Or Register To Make A Comment
+			{% endif %}
+		</div>
+		<div class="commentdisplaybox" id="showcomments">
+		<strong>Comments</strong><br/><br/>
+		{% if comments %}
+			{% for comment in comments %} 
+				<div id="comment">
+					<div class="infotxt">{{ comment.date }}</div>
+					{{ comment.content }} <br/>
+				</div>
+			{% endfor %}
+		{% endif %}
 	</div>
-	<div id="commentdisplaybox">
-	<strong>Comments</strong><br/><br/>
-	{% if comments %}
-		{% for comment in comments %} 
-			<div id="comment">
-				<div class="infotxt">{{ comment.date }}</div>
-				{{ comment.content }} <br/>
-			</div>
-		{% endfor %}
-	{% endif %}
-	</div>
-
 </div>
+	
 {% endblock %}
