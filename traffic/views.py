@@ -132,7 +132,6 @@ def searchResult(request, searchQuery):
     else:
         contextDict['comments'] = None
 
-    #return render(request, 'traffic/searchResultTesting.html', contextDict) Not sure which html page to lead to?
     return render(request, 'traffic/results.html', contextDict) 
 
 
@@ -157,17 +156,13 @@ def addPost(request):
             
     return render(request, 'traffic/writePosts.html', {'form': form})
 
-def addComments(request):#,pk
-    #post= get_object_or_404(Posts, pk=pk)
+def addComments(request):
     form = CommentsForm()
     
     if request.method =='POST':
         form = CommentsForm(request.POST)
         
         if form.is_valid():
-            #form.post = post
-            #post= get_object_or_404(Posts, pk=pk)
-            #form.post = post
             form.save(commit=True)
             return redirect('/')
         else:
@@ -290,20 +285,6 @@ def changePassword(request):
     else:
         redirect(reverse('traffic:account'))
         
-class ReactionsView(View):
-    def get(self, request):
-        postId = request.GET['postId']
-        try:
-            reaction = Reactions.objects.get(id=int(postId))
-        except Reactions.DoesNotExist:
-            return HttpResponse(-1)
-        except ValueError: 
-            return HttpResponse(-1)
-        
-        reaction.count =  reaction.count + 1
-        reaction.save()
-        
-        return HttpResponse(reaction.count)
     
 class ReactionsViewGreen(View):
     def get(self, request):

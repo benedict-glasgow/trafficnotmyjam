@@ -1,3 +1,4 @@
+//Deals with Green Reaction Button
 $(document).ready(function() { 
     $('#green_btn').click(function() { 
         var postIdVar; 
@@ -11,6 +12,7 @@ $(document).ready(function() {
     });
 });
 
+//Deals with Yellow Reaction Button
 $(document).ready(function() { 
     $('#yellow_btn').click(function() { 
         var postIdVar; 
@@ -24,6 +26,7 @@ $(document).ready(function() {
     });
 });
 
+//Deals with Red Reaction Button
 $(document).ready(function() { 
     $('#red_btn').click(function() { 
         var postIdVar; 
@@ -37,6 +40,7 @@ $(document).ready(function() {
     });
 });
 
+//Deals with Stop Reaction Button
 $(document).ready(function() { 
     $('#stop_btn').click(function() { 
         var postIdVar; 
