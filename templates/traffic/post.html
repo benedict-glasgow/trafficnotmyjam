@@ -36,9 +36,10 @@
 				<button id="green_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
-					type="button"> 
+					type="button"
+					onClick="window.location.href=window.location.href"> 
 					<span data-feather="thumbs-up"></span> 
-					{{ post.redCount }}
+					{{ post.greenCount }}
 				</button>
 			</div>
 		
@@ -46,7 +47,8 @@
 				<button id="yellow_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
-					type="button"> 
+					type="button"
+					onClick="window.location.href=window.location.href"> 
 					<span data-feather="thumbs-up"></span> 
 					{{ post.yellowCount }}
 				</button>
@@ -56,7 +58,8 @@
 				<button id="red_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
-					type="button"> 
+					type="button"
+					onClick="window.location.href=window.location.href"> 
 					<span data-feather="thumbs-up"></span> 
 					{{ post.redCount }}
 				</button>
@@ -66,7 +69,8 @@
 				<button id="stop_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
-					type="button"> 
+					type="button"
+					onClick="window.location.href=window.location.href"> 
 					<span data-feather="thumbs-up"></span> 
 					{{ post.stopCount }}
 				</button>
@@ -88,7 +92,7 @@
 						{{ field }}
 					{% endfor %}
 				   {% csrf_token %}
-				  <input type = "submit" value= "Post">
+				  <input type = "submit" value= "Post" class="submitbutton">
 				  </form>
 				{% endif %}
 			{% else %}

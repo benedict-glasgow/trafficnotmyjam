@@ -13,7 +13,9 @@ a{
 a:hover{
 	color: #bf0f0f;
 }
-
+input{
+	font-size:1.1em;
+}
 button{
 	margin: 2px;
 	padding: 5px;
@@ -24,6 +26,13 @@ button{
 	background-color: black;
 	color: #00334e;
 	font-size: 1em;
+}
+button:hover{
+	font-weight: bold;
+	border: 1px solid white;
+}
+button:active{
+	background-color: black;
 }
 #red_btn{
 	color: red;
@@ -194,7 +203,7 @@ div.contentbox a:hover{
 }
 #postinfo{
 	float:left;
-	width:69%;
+	width:66%;
 	font-size:0.9em;
 }
 #posttitle{
@@ -229,7 +238,8 @@ div.contentbox a:hover{
 }
 #postinfobox{
 	float:left;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
+	width:80%;
 }
 #ratingbox{
 	float:right;
@@ -238,7 +248,7 @@ div.contentbox a:hover{
 	font-size: 0.95em;
 }
 #postinfoandratingsbar{
-	margin-bottom: 260px;
+	margin-bottom: 180px;
 }
 #map{
 	margin-top:50px;
@@ -246,5 +256,19 @@ div.contentbox a:hover{
 #mappost{
 	margin-top: -10 px;
 }
+.submitbutton{
+	padding: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
 
+	color: #e8e8e8;
+	border: 1px solid #e8e8e8;
+	border-radius: 12px;
+	background-color: #00334e;
 
+	transition-duration: 250ms;
+}
+.submitbutton:hover{
+	color: #00334e;
+	background-color: #e8e8e8;
+}
