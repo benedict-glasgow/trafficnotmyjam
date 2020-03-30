@@ -1,20 +1,5 @@
 {% extends 'traffic/base.html' %}
 
-{% block topbar %}
-<div id="home-navbar" class="contextbox">
-	<a href="{% url 'traffic:index'%}">HOME</a>
-			<a href="{% url 'traffic:about'%}">ABOUT</a>
-			{% if user.is_authenticated %}
-				<a href="{% url 'traffic:addposts'%}">POST</a>
-				<a href="{% url 'traffic:account'%}">ACCOUNT</a>
-				<a href="{% url 'traffic:logout'%}">LOGOUT</a>
-			{% else %}
-				<a href="{% url 'traffic:login'%}">LOGIN</a>
-				<a href="{% url 'traffic:register'%}">REGISTER</a>
-			{% endif %}
-</div>
-{% endblock %}
-
 {% block left_body_block %}
 	<div id="l-block" class="contentbox">
 	{% if user.is_authenticated %}
