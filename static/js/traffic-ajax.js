@@ -7,7 +7,6 @@ $(document).ready(function() {
             {'postId': postIdVar}, 
             function(data) { 
                 $('#green_count').html(data); 
-                $('#green_btn').hide(); 
             })
     });
 });
@@ -21,7 +20,6 @@ $(document).ready(function() {
             {'postId': postIdVar}, 
             function(data) { 
                 $('#yellow_count').html(data); 
-                $('#yellow_btn').hide(); 
             })
     });
 });
@@ -35,7 +33,6 @@ $(document).ready(function() {
             {'postId': postIdVar}, 
             function(data) { 
                 $('#red_count').html(data); 
-                $('#red_btn').hide(); 
             })
     });
 });
@@ -49,7 +46,6 @@ $(document).ready(function() {
             {'postId': postIdVar}, 
             function(data) { 
                 $('#stop_count').html(data); 
-                $('#stop_btn').hide(); 
             })
     });
 });
