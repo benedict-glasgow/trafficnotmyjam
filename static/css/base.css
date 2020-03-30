@@ -183,7 +183,7 @@ div.contentbox a:hover{
 	color: #cccccc;
 }
 
-#commentdisplaybox{
+.commentdisplaybox{
 	border: solid 1px white ;
 	padding: 10px;
 	margin-bottom:10px;
@@ -191,7 +191,20 @@ div.contentbox a:hover{
 #comment{
 	border: dotted 1px white;
 	padding: 5px;
-	margin-bottom: 5px;;
+	margin-bottom: 5px;
+}
+#postinfobox{
+	float:left;
+	margin-bottom: 20px;
+}
+#ratingbox{
+	float:right;
+
+	text-align: right;
+	font-size: 0.95em;
+}
+#postinfoandratingsbar{
+	margin-bottom: 140px;
 }
 
 
