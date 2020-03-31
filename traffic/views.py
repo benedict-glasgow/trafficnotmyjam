@@ -270,7 +270,7 @@ def userLogout(request):
 def account(request):
     user = request.user
 
-    contextDict = { 'posts': None, 'comments': None}
+    contextDict = { 'posts': None, 'comments': None, 'commentPost':None}
 
     posts = Posts.objects.order_by('-date').filter(user=user)
     if posts.exists():
@@ -279,7 +279,12 @@ def account(request):
     comments = Comments.objects.order_by('-date').filter(user=user)
     if comments.exists():
         contextDict['comments'] = comments
-
+    
+    commentPost= []
+    for comment in comments:
+        commentPost.append(get_object_or_404(Posts, pk=comment.pk))
+    contextDict['commentPost'] = commentPost
+    
     contextDict['updateDetailsForm'] = ChangePasswordForm()
 
     return render(request, 'traffic/account.html', context=contextDict)
