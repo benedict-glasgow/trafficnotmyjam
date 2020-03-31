@@ -98,24 +98,25 @@ def categories(request):
     categories = []
 
     for category in POST_CATEGORIES:
-        categories += [ {'slug':category[0], 'name':category[1] } ]
+        categories += [ {'slug':category[0], 'name':category[1],
+        'count': Posts.objects.filter(category=category[0]).count() } ]
     
     contextDict['categories'] = categories
 
-    return render(request, 'traffic/categoriesTesting.html', context=contextDict)
+    return render(request, 'traffic/categories.html', context=contextDict)
 
 
 def category(request, categorySlug):
-    contextDict = {}
+    contextDict = { 'posts':None, }
 
     posts = Posts.objects.filter(category=categorySlug)
 
     if posts.exists():
         contextDict['posts'] = posts
-    else:
-        contextDict['posts'] = None
 
-    return render(request, 'traffic/categoryTesting.html', context=contextDict)
+    contextDict['categoryName'] = dict(POST_CATEGORIES)[categorySlug]
+
+    return render(request, 'traffic/category.html', context=contextDict)
 
 
 def search(request):

@@ -1,0 +1,29 @@
+{% extends 'traffic/base.html' %}
+{% load staticfiles %}
+
+{% block topbar %}
+    <div class="contentbox" id="title">
+        Browse by categories:
+    </div>
+    <div class="contentbox" id="topbar3">
+
+        {% for category in categories %}
+            <div>
+                <a href="{% url 'traffic:category' categorySlug=category.slug %}"
+                id="title2">
+                    {{ category.name }}
+                </a>
+                <div id="subtitle2">
+                    {% if category.count == 1 %}
+                        {{ category.count }} post in this category
+                    {% elif category.count == 0 %}
+                        No posts in this category
+                    {% else %}
+                        {{ category.count }} posts in this category
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+            
+    </div>
+{% endblock %}

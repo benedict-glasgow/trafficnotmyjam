@@ -1,0 +1,36 @@
+{% extends 'traffic/base.html' %}
+{% load staticfiles %}
+
+{% block topbar %}
+    <div class="contentbox" id="title">
+        Category: <span class="nonbreaking">{{ categoryName }}</span>
+    </div>
+
+{% endblock %}
+
+{% block left_body_block %}
+<div class="contentbox" id="l-block">
+
+    {% for post in posts %}
+        <div class="postbox">
+            <div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug%}">{{ post.title }}</a></strong> </div>
+            <div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }}</div>
+            <div id="postimg"> <img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable"> </div>
+        </div>
+    {% endfor %}
+        
+</div>
+
+{% endblock %}
+
+{% block right_body_block %}
+	<div id="r-block" >
+		<div id="map" class="mapindex" data-centre="glasgow" data-postids="{% for p in posts %} {{ p.id }} {% endfor %}" data-zoom=11 ></div>
+	</div>
+{% endblock %}
+
+
+{% block additional_resources %}
+	<script src="{% static "js/maps-Bing.js" %}" crossorigin="anonymous"></script>
+	<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+{% endblock %}
