@@ -111,13 +111,22 @@ def search(request):
         else:
             print(form.errors)
 
-    print(form)
     return render(request, 'traffic/search.html', {'form':form} )
 
 
 def searchResult(request, searchQuery):
     contextDict = {}
 
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+
+        if form.is_valid():
+            return redirect(form.cleaned_data['search'] + '/')
+
+        else:
+            print(form.errors)
+
+    contextDict['form'] = SearchForm(initial={'search':searchQuery})
     contextDict['query'] = searchQuery
 
     posts = Posts.objects.filter(title__icontains=searchQuery)
@@ -125,13 +134,9 @@ def searchResult(request, searchQuery):
 
     if posts.exists():
         contextDict['posts'] = posts
-    else:
-        contextDict['posts'] = None
 
     if comments.exists():
         contextDict['comments'] = comments
-    else:
-        contextDict['comments'] = None
 
     return render(request, 'traffic/results.html', contextDict) 
 
