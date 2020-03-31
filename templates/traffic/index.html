@@ -1,20 +1,33 @@
 {% extends 'traffic/base.html' %}
 {% load staticfiles %}
 
+{% block topbar %}
+	{% if user.is_authenticated %}
+		<div id="title3"> Welcome Back {{user.username}}! Check Out The Latest Jams ... </div>
+	{% else %}
+		<div id="title3"> Check Out The Latest Jams ... </div>
+	{% endif %}
+{% endblock %}
+
 {% block left_body_block %}
 	<div id="l-block" class="contentbox">
-	{% if user.is_authenticated %}
-    	Welcome Back {{user.username}}! Check Out The Latest Jams ...
-    {% else %}
-        Check Out The Latest Jams ...
-	{% endif %}
+
 		{% for post in posts %}
 		<div class="postbox">
-			<div id="posttitle"><strong><a href="/post/{{ post.slug }}/">{{ post.title }}</a></strong> </div>
+			<div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug%}">{{ post.title }}</a></strong> </div>
 			<div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }}</div>
 			<div id="postimg"> <img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable"> </div>
 		</div>
 		{% endfor %}
+		<div class="page-numbering">
+			{% for i in numberOfPages %}
+				{% if i == page %}
+					<a href="{% url 'traffic:pagesIndex' page=i %}" id="page-numbering-disabled"> {{ i }} </a>
+				{% else %}
+					<a href="{% url 'traffic:pagesIndex' page=i %}"> {{ i }} </a>
+				{% endif %}
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
@@ -11,15 +11,34 @@ import json
 from traffic.bingCoordinates import getCoordinates
 from django.views.generic import View
 from django.core import serializers
+from math import ceil
 #from django import template
 #register = template.Library()
 
-def index(request):
-    
-    postsList = Posts.objects.order_by("-date")[:10]
-    
+def indexMain(request):
+    ## If the front page is requested, it is the same as the first page
+    return index(request, '1')
+
+def index(request, page):
     contextDict = {}
+
+    ## If the page number is invalid, raise a 404 error
+    try:
+        page = int(page)
+    except:
+        raise Http404('Invalid page number')
+    
+    n = 5*page
+    postsList = Posts.objects.order_by("-date")[(n-5):n]
+    
+    if not postsList.exists():
+        raise Http404('Invalid page number')
+
+    numberOfPages = ceil(Posts.objects.count() / 5)
+
     contextDict["posts"] = postsList
+    contextDict['numberOfPages'] = range(1, numberOfPages + 1)
+    contextDict['pageNumber'] = page
     return render(request, 'traffic/index.html', context=contextDict)
 
 def post(request, postSlug):
