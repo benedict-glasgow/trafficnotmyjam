@@ -51,7 +51,7 @@ def populate():
          { 'title': "Cyclists Deserve Better",
           'description': "I can't believe that I am saving the planet by cycing to workn only to be faced with inconsiderate cardrivers ",
           'photo': 'postImages\\Bicycle.jpg', 
-          'location': "55.8589190, -4.2589930",
+          'location': "55.861135, -4.310096",
           'date' : timezone.now(),
           'category': 'cycling-catastrophes',
           'greenCount': 3000,
@@ -62,7 +62,7 @@ def populate():
           { 'title': "The worst traffic I have ever seen",
           'description': " I have no words ",
           'photo': 'postImages\\Trafficjam.jpg', 
-          'location': "55.8589199, -4.2589932",
+          'location': "55.840359, -4.276234",
           'date' : timezone.now(),
           'category': 'killer-commutes',
           'greenCount': 300,
@@ -73,7 +73,7 @@ def populate():
           { 'title': "I can never find a space here!!!!",
           'description': " There's no places to park and it adds 20 mins to my commute trying to find a space ",
           'photo': 'postImages\\Nospaces.jpg', 
-          'location': "55.8589189, -4.2589970",
+          'location': "55.823479, -4.263957",
           'date' : timezone.now(),
           'category': 'killer-commutes',
           'greenCount': 30,
@@ -96,6 +96,9 @@ def populate():
     commentsData = [{'content':"I think this is the rudest thing I have ever seen!"},
                    {'content': "I cannot believe that this has happend, you couldnt make it up"},
                    {'content': "I dont understand how this could even happen"},
+                   {'content':"This is terrible!"},
+                   {'content': "So so stupid"},
+                   {'content': "Awful"},
                   ]
     
 
@@ -105,13 +108,12 @@ def populate():
         u = addUser(user['username'],user['password'])
         addUserProfile(u)
 
-
+    count = -1
     for post in postsData:
         p = addPosts(post['title'], User.objects.order_by('?').first(), post['description'], post['photo'],
                  post['location'],post['date'], post['category'],post['greenCount'],post['yellowCount'],post['redCount'],post['stopCount']) 
-
-    for comment in commentsData:
-        addComment(p, User.objects.order_by('?').first(), comment['content'])
+        count = count + 1
+        addComment(p, User.objects.order_by('?').first(), commentsData[count]['content'])
     
     print("Posts :")
     for p in Posts.objects.all():
