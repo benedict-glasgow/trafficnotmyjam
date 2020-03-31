@@ -18,9 +18,21 @@ class Posts(models.Model):
     slug = models.SlugField()
     
     def save(self, *args, **kwargs):
+
         if self.slug == '':
-            self.slug = slugify(self.title) + str( Posts.objects.filter(slug__regex=r'{}'.format(slugify(self.title)) ).count() )
-        super(Posts, self).save(*args, **kwargs)
+            ## If there is no slug, create the slug using the Posts title and the Posts id
+            ## To use the id, the Posts must have been saved to the db first
+
+            if self.id == None:
+                super(Posts, self).save(*args, **kwargs)
+                self.save()
+            else:
+                self.slug = slugify(self.title) + str(self.id)
+                super(Posts, self).save(*args, **kwargs)
+
+        else:
+            super(Posts, self).save(*args, **kwargs)
+
     
     def __str__(self):
         return self.title
