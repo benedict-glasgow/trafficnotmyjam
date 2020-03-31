@@ -2,11 +2,11 @@
 {% load staticfiles %}
 
 {% block topbar %}
-<div class="contentbox" id="topbar">
+<div class="contentbox" id="topbar2">
+	<div id="title"> Search the website: </div>
 	<form id="searchForm" method="post" action="/search/">
 		{% csrf_token %}
 		{{ form.search.errors }}
-		{{ form.search.help_text }}
 		{{ form.search }} 
 		<input type="submit" name="submit" value="Search" class="submitbutton" />
 	</form>

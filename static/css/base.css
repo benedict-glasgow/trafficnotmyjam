@@ -52,6 +52,8 @@ body{
 	background-color: #00334e;
 	color: #145374;
 	font-family: "Roboto", "Verdana", "Arial";
+	max-width: 1300px;
+	margin: auto;
 }
 
 #header{	
@@ -70,12 +72,20 @@ body{
 }
 #topbar{
 	padding-left:5%;
-	margin-top: 10px;
 	margin-bottom: 10px;
 	
 	text-align: left;
 	font-size: 1.2em;
 }
+
+#topbar2{
+	padding-left:5%;
+	margin-top: 200px;
+	
+	text-align: left;
+	font-size: 1.2em;
+}
+
 #l-block{
 	margin-left:2%;
 	padding-left:5%;
@@ -93,7 +103,7 @@ body{
 	width: 43%;
 	height: 400px;
 	
-	text-align: right;
+	text-align: left;
 }
 #bottombar{
 	float:left;
@@ -161,7 +171,7 @@ div.contextbox a{
 	
 	color: #e8e8e8;
 	background-color: #00334e;
-	border-left: 5px solid #5588a3;
+	/* border-left: 5px solid #5588a3; */
 }
 div.contentbox a{
 	color: #e8e8e8;
@@ -262,8 +272,8 @@ div.contentbox a:hover{
 	padding-right: 20px;
 
 	color: #e8e8e8;
-	border: 1px solid #e8e8e8;
-	border-radius: 12px;
+	border: 1px solid #e8e8e800;
+	border-radius: 4px;
 	background-color: #00334e;
 
 	transition-duration: 250ms;
@@ -271,4 +281,34 @@ div.contentbox a:hover{
 .submitbutton:hover{
 	color: #00334e;
 	background-color: #e8e8e8;
+}
+
+#searchForm{
+	margin: auto;
+	margin-top: 10px;
+	width: 50%;
+
+}
+
+#id_search{
+	border: none;
+	border-bottom: 2px solid #e8e8e8;
+	background-color: #00000000;
+	color: #e8e8e8;
+	margin:auto;
+}
+
+#title{
+	margin: auto;
+	width: 50%;
+	font-size: 30px;
+	color:  #e8e8e8;
+}
+
+#title2{
+	margin-left: 10px;
+	margin-bottom: 10px;
+	width: 50%;
+	font-size: 25px;
+	color:  #e8e8e8;
 }
