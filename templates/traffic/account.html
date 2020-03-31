@@ -19,20 +19,17 @@
         <br/>
         <strong>Your comments:</strong> <br/>
         {% for comment in comments %}
-            You commented :"{{ comment }}"  on {{ comment.post }}<br/>
-        {% endfor %}
-        
-
-        {% for post in commentPost %}
-        <div class="postbox">
-			<div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug%}">{{ post.title }}</a></strong> </div>
-			<div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }}</div>
-			<div id="postimg"> <img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable"> </div>
-		</div>
-        {% endfor %}
-        
-    
-        
+            You commented "{{ comment }}"  on :<br/>
+            {% for post in commentPost %}
+            {% if comment.pk == post.pk %}
+                <div class="postbox">
+            		<div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug%}">{{ post.title }}</a></strong> </div>
+            		<div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }}</div>
+            		<div id="postimg"> <img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable"> </div><br/>
+            	</div>
+            {% endif %}
+            {% endfor %}  
+        {% endfor %}      
     </div>      
 {% endblock %}
 
