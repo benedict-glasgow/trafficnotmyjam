@@ -80,7 +80,7 @@ body{
 
 #topbar2{
 	padding-left:5%;
-	margin-top: 200px;
+	margin-top: 110px;
 	
 	text-align: left;
 	font-size: 1.2em;
@@ -125,6 +125,13 @@ body{
 	text-align: left;
 	
 	
+}
+.textpanel{
+	border-left: 2px solid #e8e8e8;
+	color: #e8e8e8;
+	background-color: #333333;
+	padding: 20px;
+	margin: 5%;
 }
 #navbar{
 	position:fixed;
@@ -206,6 +213,7 @@ div.contentbox a:hover{
 
 	overflow:hidden;
 }
+
 #postimg{
 	float: right;
 	width:29%;
@@ -260,19 +268,20 @@ div.contentbox a:hover{
 #postinfoandratingsbar{
 	margin-bottom: 180px;
 }
-#map{
-	margin-top:50px;
+.mapindex{
+	margin-top: 70px;
 }
-#mappost{
-	margin-top: -10 px;
+.mappost{
+	margin-top: 0px;
 }
 .submitbutton{
 	padding: 5px;
 	padding-left: 20px;
 	padding-right: 20px;
+	margin: 10px;
 
 	color: #e8e8e8;
-	border: 1px solid #e8e8e800;
+	border: 1px solid #e8e8e8;
 	border-radius: 4px;
 	background-color: #00334e;
 
