@@ -384,10 +384,14 @@ class LoadMapView(View):
         
         for postID in postIDs:
             try:
-                posts += [ { 'title': Posts.objects.get(id=int(postID)).title, 'location': Posts.objects.get(id=int(postID)).location.split(',') }  ]
+                ## If the location is invalid, don't add it to the list of locations
+                numbers = Posts.objects.get(id=int(postID)).location.split(',')
+                posts += [ { 'title': Posts.objects.get(id=int(postID)).title, 'location': [ float(numbers[0]), float(numbers[1])] }  ]
             except:
                 pass
 
+        
+        ## If the centre is not glasgow, use the first location as the centre
         if request.GET['centre'] == 'glasgow':
             centre = glasgowCoordinates
         else:

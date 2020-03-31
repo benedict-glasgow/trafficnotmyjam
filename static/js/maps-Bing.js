@@ -17,7 +17,7 @@ function GetMap(){
         });
 
         for (var i = 0; i < pinData['posts'].length; i++) {
-            var location = new Microsoft.Maps.Location( parseFloat(pinData['posts'][i]['location'][0]), parseFloat(pinData['posts'][i]['location'][1]) )
+            var location = new Microsoft.Maps.Location( pinData['posts'][i]['location'][0], pinData['posts'][i]['location'][1] );
             var pin = new Microsoft.Maps.Pushpin( location, {
                 title: pinData['posts'][i]['title'],
                 });
