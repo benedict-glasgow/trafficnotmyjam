@@ -234,6 +234,7 @@ def register(request):
 
 
 def userLogin(request):
+    contextDict = {}
 
     if request.method == 'POST':
 
@@ -249,15 +250,19 @@ def userLogin(request):
                 return redirect(reverse('traffic:index'))
 
             else:
-                HttpResponse("This account is disabled!")
+                contextDict['loginFail'] = True
+                contextDict['loginMessage'] = "Account disabled"
+                return render(request, 'traffic/login.html', contextDict)
 
         
         else:
-            print(f'Invalid login details {username} {password} ')
-            return HttpResponse("Invalid log in details!")
+            contextDict['loginFail'] = True
+            contextDict['loginMessage'] = "Invalid log in details provided."
+            return render(request, 'traffic/login.html', contextDict)
 
     else:
-        return render(request, 'traffic/login.html')
+        contextDict['loginFail'] = False
+        return render(request, 'traffic/login.html', contextDict)
 
 
 @login_required

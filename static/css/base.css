@@ -354,9 +354,9 @@ div.contentbox a:hover{
 }
 
 .page-numbering{
-	margin: auto;
 	width: auto;
-
+	margin-top: 10px;
+	margin-bottom: 110px;
 }
 
 .page-numbering a {
@@ -379,4 +379,20 @@ div.contentbox a:hover{
 /* Use for adding non-breaking spaces */
 span.nonbreaking {
 	display: inline-block;
+}
+
+.errorbox{
+	margin-top: 50px;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 10px;
+
+	border: 5px solid #bf0f0f;
+	border-radius: 10px;
+
+	color: #bf0f0f;
+	background-color: #e8e8e8;
+
+	font-size: 0.5em;
+	font-weight: bold;
 }

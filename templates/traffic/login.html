@@ -1,5 +1,15 @@
 {% extends 'traffic/base.html' %}
 
+{% block topbar %}
+
+{% if loginFail %}
+    <div id="topbar" class="errorbox">
+        {{loginMessage}}
+    </div>
+{% endif %}
+
+{% endblock %}
+
 {% block left_body_block %}
     <div id="l-block" class="contentbox">
         <br/>
