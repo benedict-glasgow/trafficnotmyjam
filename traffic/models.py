@@ -33,6 +33,19 @@ class Posts(models.Model):
         else:
             super(Posts, self).save(*args, **kwargs)
 
+
+        if self.greenCount < 0:
+            self.greenCount = 0
+            
+        if self.yellowCount <0:
+            self.yellowCount =0
+            
+        if self.redCount < 0:
+            self.redCount = 0
+            
+        if self.stopCount < 0:
+            self.stopCount = 0
+            
     
     def __str__(self):
         return self.title
