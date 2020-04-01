@@ -78,7 +78,7 @@ body{
 	font-size: 1.2em;
 }
 
-#topbar2{
+#searchbar{
 	padding-left:5%;
 	margin-top: 110px;
 	
@@ -86,7 +86,7 @@ body{
 	font-size: 1.2em;
 }
 
-#topbar3{
+#categoriespanel{
 	width: 61%;
 	min-width: 615px;
 	margin: auto;
@@ -217,7 +217,7 @@ div.contentbox a:hover{
 	border-left: 2px solid #e8e8e8;
 	margin-left: -5%;
 	margin-right: 5%;
-	margin-top: 10px;
+	margin-bottom: 10px;
 	padding: 15px;
 
 	background-color: #333333;
@@ -331,6 +331,11 @@ div.contentbox a:hover{
 }
 
 #title2{
+	color: red;
+}
+
+
+#categorytitle{
 	margin-top: 5px;
 	margin-left: 10px;
 	padding: 5px;
@@ -340,14 +345,33 @@ div.contentbox a:hover{
 	font-weight: 550;
 	border-radius: 5px;
 }
-#title2:hover{
+#categorytitle:hover{
 	border: 2px solid #e8e8e8;
 	border-radius: 5px;
 	padding-left: 5px;
 	Padding-right: 5px;
 }
+#accountpagetitle{
+	margin-top: 5px;
+	margin-left: 10px;
+	padding: 5px;
+	padding-left: 7px;
+	font-size: 30px;
+	color:  #e8e8e8;
+	font-weight: 550;
+	border-radius: 5px;
+}
 
-#subtitle2{
+
+#registrationalert{
+	margin-left: 15px;
+	margin-bottom: 20px;
+	margin-top: 5px;
+	font-size: 20px;
+	color:  #e8e8e8;
+	font-weight: 300;
+}
+#categoryinfo{
 	margin-left: 15px;
 	margin-bottom: 20px;
 	margin-top: 5px;
@@ -356,16 +380,16 @@ div.contentbox a:hover{
 	font-weight: 300;
 }
 
-#subtitle2-1{
+#accountpagecommenttext{
 	margin-left: 15px;
-	margin-top: 5px;
-	margin-bottom: 0;
+	margin-top: 20px;
+	margin-bottom: 0px;
 	font-size: 20px;
 	color:  #e8e8e8;
 	font-weight: 300;
 }
 
-#title3{
+#splashtext{
 	margin: auto;
 	margin-left: 2%;
 	margin-top: 35px;

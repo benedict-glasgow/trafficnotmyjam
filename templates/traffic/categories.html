@@ -2,28 +2,28 @@
 {% load staticfiles %}
 
 {% block topbar %}
-    <div class="contentbox" id="title">
-        Browse by categories:
-    </div>
-    <div class="contentbox" id="topbar3">
+    <div class="contentbox"></div>
+        <div id="title">Browse by categories:</div>
+    
+        <div id="categoriespanel">
 
-        {% for category in categories %}
-            <div>
-                <a href="{% url 'traffic:category' categorySlug=category.slug %}"
-                id="title2">
-                    {{ category.name }}
-                </a>
-                <div id="subtitle2">
-                    {% if category.count == 1 %}
-                        {{ category.count }} post in this category
-                    {% elif category.count == 0 %}
-                        No posts in this category
-                    {% else %}
-                        {{ category.count }} posts in this category
-                    {% endif %}
+            {% for category in categories %}
+                <div>
+                    <a href="{% url 'traffic:category' categorySlug=category.slug %}"
+                    id="categorytitle">
+                        {{ category.name }}
+                    </a>
+                    <div id="categoryinfo">
+                        {% if category.count == 1 %}
+                            {{ category.count }} post in this category
+                        {% elif category.count == 0 %}
+                            No posts in this category
+                        {% else %}
+                            {{ category.count }} posts in this category
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-            
+            {% endfor %}
+        </div>        
     </div>
 {% endblock %}

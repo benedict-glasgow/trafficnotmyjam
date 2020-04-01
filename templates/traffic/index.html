@@ -3,9 +3,9 @@
 
 {% block topbar %}
 	{% if user.is_authenticated %}
-		<div id="title3"> Welcome Back {{user.username}}! Check Out The Latest Jams ... </div>
+		<div id="splashtext"> Welcome Back {{user.username}}! Check Out The Latest Jams ... </div>
 	{% else %}
-		<div id="title3"> Check Out The Latest Jams ... </div>
+		<div id="splashtext"> Check Out The Latest Jams ... </div>
 	{% endif %}
 {% endblock %}
 

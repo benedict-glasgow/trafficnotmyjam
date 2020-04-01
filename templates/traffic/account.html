@@ -2,14 +2,14 @@
 {% load staticfiles %}
 
 {% block topbar %}
-    <div id="title" class="contentbox"><strong>{{ user.username }}'s Account</strong> <br/></div>
+    <div id="title" class="contentbox">{{ user.username }}'s Account <br/></div>
 {% endblock %}
 
 
 {% block right_body_block %}
      <div id="r-block" class="contentbox">
         
-        <div id="title2"> Change your Password: </div> <br/>
+        <div id="accountpagetitle"> Change your Password: </div> <br/>
         <form id="UpdateDetailsForm" method="POST" action="/account/" enctype="multipart/form-data" >
             {% csrf_token %}
             {% for hidden in updateDetailsForm.hidden_fields %}
@@ -29,7 +29,7 @@
 
 {% block left_body_block %}
     <div id="l-block" class="contentbox">
-        <div id="title2"> Your Posts: </div> <br/>
+        <div id="accountpagetitle"> Your Posts: </div> <br/>
         {% for post in posts %} 
     	<div class="postbox">
 			<div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug%}">{{ post.title }}</a></strong> </div>
@@ -38,9 +38,9 @@
 		</div>
         {% endfor %}
         <br/>
-        <div id="title2">Your Comments:</div> <br/>
+        <div id="accountpagetitle">Your Comments:</div> <br/>
         {% for comment in comments %}
-            <div id="subtitle2-1">"{{ comment }}":</div><br/>
+            <div id="accountpagecommenttext">"{{ comment }}":</div><br/>
             <div class="postbox">
                 <div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=comment.post.slug%}">{{ comment.post.title }}</a></strong> </div>
                 <div id="postinfo"> A {{ comment.post.category }} incident posted by {{ comment.post.user.username }}</div>

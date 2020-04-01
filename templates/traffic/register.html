@@ -6,7 +6,7 @@
         <div id="title"> Registration </div> 
         <br/>
         {% if registered %}
-            <em id="subtitle2"> Registration successful! </em>
+            <em id="registrationalert"> Registration successful! </em>
         {% else %}
             <form id="UserForm" method="POST" action="/register/" enctype="multipart/form-data" >
                 {% csrf_token %}

@@ -1,7 +1,7 @@
 {% extends 'traffic/base.html' %}
 
 {% block topbar %}
-<div class="contentbox" id="topbar2">
+<div class="contentbox" id="searchbar">
 	<div id="title"> Search the website: </div>
 	<form id="searchForm" method="post" action="/search/">
 		{% csrf_token %}
@@ -14,7 +14,7 @@
 
 {% block left_body_block %}
 <div class="contentbox" id="l-block">
-    <div id="title2"> Posts: </div>
+    <div id="accountpagetitle"> Posts: </div>
     {% if posts %}
     	{% for post in posts %}
     		<a href="/post/{{ post.slug }}/"> {{ post.title }} </a> <br/><br/>
@@ -27,7 +27,7 @@
 
 {% block right_body_block %}
 <div class="contentbox" id="r-block">
-    <div id="title2"> Comments: </div>
+    <div id="accountpagetitle"> Comments: </div>
     {% if comments %}
     	{% for comment in comments %}
     		<a href="/post/{{ comment.post.slug }}/"> {{ comment.post.title }} </a> : <em> {{ comment.content }} </em> <br/><br/>

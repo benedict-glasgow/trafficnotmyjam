@@ -3,7 +3,7 @@
 
 {% block left_body_block %}
      <div id="l-block" class="contentbox">
-        <strong id="posttitle"> New Post </strong><br/><br/>
+        <strong id="title"> New Post </strong><br/><br/>
         <form id="addPosts" method="post" action= "/addposts/" enctype="multipart/form-data">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
