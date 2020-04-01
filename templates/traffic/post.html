@@ -33,27 +33,15 @@
 		<div class="commentdisplaybox" id="ratingbox">
 			<strong>Rating</strong>
 			<div> 
-				<button id="green_btn" 
+				<button id="stop_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
 					type="button"
 					onClick="window.location.href=window.location.href"> 
 					<span data-feather="thumbs-up"></span> 
-					{{ post.greenCount }}
+					{{ post.stopCount }}
 				</button>
 			</div>
-		
-			<div> 
-				<button id="yellow_btn" 
-					data-postid="{{ post.id }}" 
-					class="btn btn-primary btn-sm" 
-					type="button"
-					onClick="window.location.href=window.location.href"> 
-					<span data-feather="thumbs-up"></span> 
-					{{ post.yellowCount }}
-				</button>
-			</div>
-		
 			<div> 
 				<button id="red_btn" 
 					data-postid="{{ post.id }}" 
@@ -64,15 +52,24 @@
 					{{ post.redCount }}
 				</button>
 			</div>
-		
 			<div> 
-				<button id="stop_btn" 
+				<button id="yellow_btn" 
 					data-postid="{{ post.id }}" 
 					class="btn btn-primary btn-sm" 
 					type="button"
 					onClick="window.location.href=window.location.href"> 
 					<span data-feather="thumbs-up"></span> 
-					{{ post.stopCount }}
+					{{ post.yellowCount }}
+				</button>
+			</div>
+			<div> 
+				<button id="green_btn" 
+					data-postid="{{ post.id }}" 
+					class="btn btn-primary btn-sm" 
+					type="button"
+					onClick="window.location.href=window.location.href"> 
+					<span data-feather="thumbs-up"></span> 
+					{{ post.greenCount }}
 				</button>
 			</div>
 		</div>

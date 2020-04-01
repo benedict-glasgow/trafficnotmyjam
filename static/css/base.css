@@ -256,28 +256,31 @@ div.contentbox a:hover{
 }
 
 .commentdisplaybox{
-	border: solid 1px #e8e8e8 ;
+	border-bottom: solid 1px white;
 	padding: 10px;
 	margin-bottom:10px;
 }
 #comment{
-	border: dotted 1px #e8e8e8;
-	padding: 5px;
-	margin-bottom: 5px;
+	border-left: solid 1px #e8e8e8;
+	padding: 10px;
+	margin-bottom: 10px;
 }
 #postinfobox{
 	float:left;
+	padding-top: 20px;
 	margin-bottom: 0px;
 	width:80%;
 }
 #ratingbox{
+	border: none;
 	float:right;
 
 	text-align: right;
 	font-size: 0.95em;
 }
 #postinfoandratingsbar{
-	margin-bottom: 180px;
+	height: 180px;
+	border-bottom: solid 1px white;
 }
 .mapindex{
 	margin-top: 30px;
