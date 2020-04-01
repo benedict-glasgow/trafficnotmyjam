@@ -8,7 +8,7 @@
         {% if registered %}
             <em id="registrationalert"> Registration successful! </em>
         {% else %}
-            <form id="UserForm" method="POST" action="/register/" enctype="multipart/form-data" >
+            <form id="UserForm" method="POST" action="/register/" enctype="multipart/form-data" class="regform">
                 {% csrf_token %}
                 {% for hidden in userForm.hidden_fields %}
                     {{ hidden }}
@@ -17,15 +17,15 @@
                     <div id="register-field-name">{{ field.name }}:</div>
                     <div id="register-field">{{ field }}</div>
                     <div id="register-field-help">{{ field.help_text }}</div>
-                    <div id="register-field-errors">{{ field.errors }}</div>
+                    <div id="register-field-errors">{{ field.errors }}</div><br/>
                 {% endfor %}
                 {% for hidden in userProfileForm.hidden_fields %}
-                    {{ hidden }}
+                    {{ hidden }}<br/>
                 {% endfor %}
                 {% for field in userProfileForm.visible_fields %}
                     <div id="register-field-help">{{ field.help_text }}</div>
                     <div id="register-field">{{ field }}</div>
-                    <div id="register-field-errors">{{ field.errors }}</div>
+                    <div id="register-field-errors">{{ field.errors }}</div><br/>
                 {% endfor %}
                         <!-- {% csrf_token %}
                 {{ userForm.as_p }}

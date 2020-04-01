@@ -198,7 +198,7 @@ div.contentbox a{
 	font-weight: bold;	
 }
 div.contentbox a:hover{
-	color: #5588a3;
+	color: #00334e;
 }
 .contextbox{
     padding-top: 5px;
@@ -330,11 +330,6 @@ div.contentbox a:hover{
 	font-weight: 200;
 }
 
-#title2{
-	color: red;
-}
-
-
 #categorytitle{
 	margin-top: 5px;
 	margin-left: 10px;
@@ -402,9 +397,11 @@ div.contentbox a:hover{
 	width: auto;
 	margin-top: 10px;
 	margin-bottom: 140px;
+	
 }
 
 .page-numbering a {
+	margin-right: 4px;
 	background-color: #00334e;
 	color: #e8e8e8;
 	padding: 10px 10px;
@@ -420,6 +417,7 @@ div.contentbox a:hover{
 	color: #00334e;
 
 }
+
 
 /* Use for adding non-breaking spaces */
 span.nonbreaking {
@@ -452,6 +450,7 @@ span.nonbreaking {
 	font-size: 110%;
 	font-weight: 500;
 }
+
 
 
 

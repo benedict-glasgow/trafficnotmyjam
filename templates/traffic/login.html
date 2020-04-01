@@ -13,16 +13,16 @@
 {% block left_body_block %}
     <div id="l-block" class="contentbox">
         <br/>
-        <strong> Login </strong> 
+        <div id="title"> Login </div> 
         <br/><br/>
         <form id="loginForm" method="POST" action="{% url 'traffic:login' %}">
             {% csrf_token %}
             
-            Username: 
-            <input type="text" name="username" value="" size="50" /> 
+            Username: <br/>
+            <input type="text" name="username" value="" size="25" /> 
             <br/><br/>
-            Password: 
-            <input type="password" name="password" value="" size="50" /> 
+            Password: <br/>
+            <input type="password" name="password" value="" size="25" /> 
             <br/><br/>
             
             <input type="submit" name="submit" value="Submit" class="submitbutton" />
