@@ -328,17 +328,24 @@ div.contentbox a:hover{
 }
 
 #title2{
+	margin-top: 5px;
 	margin-left: 10px;
-	margin-bottom: 10px;
+	padding: 5px;
 	font-size: 30px;
 	color:  #e8e8e8;
 	font-weight: 550;
+	transition-duration: 250ms;
+	border-radius: 5px;
+}
+#title2:hover{
+	background-color: #e8e8e8;
+	color: #00334e;
 }
 
 #subtitle2{
 	margin-left: 15px;
 	margin-bottom: 20px;
-	margin-top: 1px;
+	margin-top: 5px;
 	font-size: 20px;
 	color:  #e8e8e8;
 	font-weight: 300;
@@ -387,11 +394,11 @@ span.nonbreaking {
 	margin-right: 10%;
 	padding: 10px;
 
-	border: 5px solid #bf0f0f;
+	border: 5px solid #e8e8e8;
 	border-radius: 10px;
 
-	color: #bf0f0f;
-	background-color: #e8e8e8;
+	color: #e8e8e8;
+	background-color: #bf0f0f;
 
 	font-size: 0.5em;
 	font-weight: bold;
