@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.password_validation import validate_password, ValidationError
 from traffic.models import Posts, Comments
 from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm, ChangePasswordForm
 from traffic.multichoice import POST_CATEGORIES
@@ -207,17 +208,26 @@ def register(request):
 
         if userForm.is_valid() and userProfileForm.is_valid():
 
-            user = userForm.save()
-            user.set_password(user.password)
-            user.save()
+            user = userForm.save(commit=False)
+            
+            try:
+                ## Check if the password follows the validation rules
+                validate_password(user.password)
+                user.set_password(user.password)
+                user.save()
 
-            ## The UserProfile models are set up for future expansion
+                ## The UserProfile models are set up for future expansion
 
-            profile = userProfileForm.save(commit=False)
-            profile.user = user
-            profile.save()
+                profile = userProfileForm.save(commit=False)
+                profile.user = user
+                profile.save()
 
-            registered = True
+                registered = True
+
+            except ValidationError as exc:
+                ## If the password does not follow the validation rules add the error message
+                ## to the form and try again
+                userForm.add_error("password", exc)
 
         else:
             print(userForm.errors, userProfileForm.errors)

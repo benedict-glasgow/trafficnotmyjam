@@ -3,15 +3,34 @@
 {% block left_body_block %}
     <div id="l-block" class="contentbox">
         <br/>
-        <strong> Registration </strong> 
+        <div id="title"> Registration </div> 
         <br/>
         {% if registered %}
-            <em> Registration successful! </em>
+            <em id="subtitle2"> Registration successful! </em>
         {% else %}
             <form id="UserForm" method="POST" action="/register/" enctype="multipart/form-data" >
                 {% csrf_token %}
+                {% for hidden in userForm.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in userForm.visible_fields %}
+                    <div id="register-field-name">{{ field.name }}:</div>
+                    <div id="register-field">{{ field }}</div>
+                    <div id="register-field-help">{{ field.help_text }}</div>
+                    <div id="register-field-errors">{{ field.errors }}</div>
+                {% endfor %}
+                {% for hidden in userProfileForm.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in userProfileForm.visible_fields %}
+                    <div id="register-field-help">{{ field.help_text }}</div>
+                    <div id="register-field">{{ field }}</div>
+                    <div id="register-field-errors">{{ field.errors }}</div>
+                {% endfor %}
+                        <!-- {% csrf_token %}
                 {{ userForm.as_p }}
-                {{ userProfileForm.as_p }}
+                {{ userProfileForm.as_p }} -->
+                <br/>
                 <input type="submit" name="submit" value="Register" class="submitbutton"/>
             </form>
         {% endif %}

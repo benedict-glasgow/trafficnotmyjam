@@ -406,3 +406,36 @@ span.nonbreaking {
 	font-size: 0.5em;
 	font-weight: bold;
 }
+
+
+#register-field-help{
+	font-size: 75%;
+}
+
+#register-field-name{
+	text-transform: capitalize;
+	font-size: 110%;
+	font-weight: 500;
+}
+
+#id_username{
+	background-color: #e8e8e8;
+	color: #00334e;
+	border-radius: 2px;
+	border: 1px solid black;
+	padding-left: 5px;
+	margin: auto;
+	margin-top: 3px;
+	height: 25px;
+}
+
+#id_password{
+	background-color: #e8e8e8;
+	color: #00334e;
+	border-radius: 2px;
+	border: 1px solid black;
+	padding-left: 5px;
+	margin: auto;
+	margin-top: 3px;
+	height: 25px;
+}
