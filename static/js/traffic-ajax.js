@@ -7,7 +7,7 @@ $(document).ready(function() {
         $.get('/traffic/greenreaction/', 
             {'postId': postIdVar}, 
             function(data) { 
-                $('#green_count').html(data); 
+                $('#green_btn').text(data); 
             })
     });
 });
@@ -21,7 +21,7 @@ $(document).ready(function() {
         $.get('/traffic/yellowreaction/', 
             {'postId': postIdVar}, 
             function(data) { 
-                $('#yellow_count').html(data); 
+                $('#yellow_btn').text(data); 
             })
     });
 });
@@ -35,7 +35,7 @@ $(document).ready(function() {
         $.get('/traffic/redreaction/', 
             {'postId': postIdVar}, 
             function(data) { 
-                $('#red_count').html(data); 
+                $('#red_btn').text(data); 
             })
     });
 });
@@ -49,8 +49,9 @@ $(document).ready(function() {
         $.get('/traffic/stopreaction/', 
             {'postId': postIdVar}, 
             function(data) { 
-                $('#stop_count').html(data); 
+                $('#stop_btn').text(data);
             })
+
     });
 });
 

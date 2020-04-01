@@ -26,6 +26,9 @@ button{
 	background-color: black;
 	color: #00334e;
 	font-size: 1em;
+	height: 4em;
+	width: 4em;
+	cursor: pointer;
 }
 button:hover{
 	font-weight: bold;
@@ -44,8 +47,17 @@ button:active{
 	color: lightgreen;
 }
 #stop_btn{
+	clip-path: polygon(0% 30%, 0% 70%, 30% 100%, 70% 100%, 100% 70%, 100% 30%, 70% 0%, 30% 0% );
+	border-radius: 0%;
 	color: white;
 	background-color: red;
+}
+
+#stop_btn:hover{
+	clip-path: polygon(0% 30%, 0% 70%, 30% 100%, 70% 100%, 100% 70%, 100% 30%, 70% 0%, 30% 0% );
+	border-radius: 0%;
+	font-weight: bold;
+	border-color: #00000000;
 }
 
 body{
@@ -274,7 +286,7 @@ div.contentbox a:hover{
 #ratingbox{
 	border: none;
 	float:right;
-
+	background-color: #00334e;
 	text-align: right;
 	font-size: 0.95em;
 }
