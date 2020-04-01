@@ -121,7 +121,7 @@ body{
 	margin-top: 10px;
 	padding-left:5%;
 	padding-right:5%;
-	margin-bottom: 10%;
+	margin-bottom: 100px;
 
 	width:88%;
 	text-align: left;
@@ -363,7 +363,7 @@ div.contentbox a:hover{
 .page-numbering{
 	width: auto;
 	margin-top: 10px;
-	margin-bottom: 110px;
+	margin-bottom: 140px;
 }
 
 .page-numbering a {
