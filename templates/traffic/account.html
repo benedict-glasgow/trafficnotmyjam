@@ -8,7 +8,7 @@
 
 {% block right_body_block %}
      <div id="r-block" class="contentbox">
-        <div id="map" class="mapindex" data-centre="glasgow" data-postids="{% for p in posts %} {{ p.id }} {% endfor %}" data-zoom=11 ></div>
+        
         <div id="title2"> Change your Password: </div> <br/>
         <form id="UpdateDetailsForm" method="POST" action="/account/" enctype="multipart/form-data" >
             {% csrf_token %}

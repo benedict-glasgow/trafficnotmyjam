@@ -2,7 +2,7 @@
 
 
 {% block left_body_block %}
-    <div id="l-block" class="contentbox">
+     <div id="l-block" class="contentbox">
         <strong id="posttitle"> New Post </strong><br/><br/>
         <form id="addPosts" method="post" action= "/addposts/" enctype="multipart/form-data">
             {% csrf_token %}
@@ -16,7 +16,7 @@
             {% endfor %}
             <input type="submit" name="submit" value="Write Post" class="submitbutton"/>
         </form>
-	</div>
+     </div>
 {% endblock %}
 
 {% block right_body_block %}
