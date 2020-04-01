@@ -281,11 +281,40 @@ def userLogout(request):
     return redirect(reverse('traffic:index'))
    
 
+def changePasswordH(request):
+    ## Helping function for changing the password
+    passForm = ChangePasswordForm(request.POST)
+
+    oldPassword = request.POST.get('oldPassword')
+    newPassword = request.POST.get('newPassword')
+    repeatNewPassword = request.POST.get('repeatNewPassword')
+
+    correctPassword = check_password(oldPassword, request.user.password)
+    
+    if correctPassword:
+        if newPassword == repeatNewPassword:
+            try:
+                validate_password(newPassword)
+                request.user.set_password(newPassword)
+                request.user.save()
+                passForm.add_error('repeatNewPassword', "Password changed successfully!")
+            except ValidationError as exc:
+                passForm.add_error('repeatNewPassword', exc)
+
+        else:
+            passForm.add_error('repeatNewPassword', "The two passwords don't match")
+        
+    else:
+        passForm.add_error('oldPassword', "Wrong password")
+
+    return passForm
+
+
 @login_required
 def account(request):
     user = request.user
 
-    contextDict = { 'posts': None, 'comments': None, 'commentPost':None}
+    contextDict = { 'posts': None, 'comments': None, }
 
     posts = Posts.objects.order_by('-date').filter(user=user)
     if posts.exists():
@@ -295,41 +324,17 @@ def account(request):
     if comments.exists():
         contextDict['comments'] = comments
     
-    commentPost= []
-    for comment in comments:
-        commentPost.append(get_object_or_404(Posts, pk=comment.pk))
-    contextDict['commentPost'] = commentPost
-    
-    contextDict['updateDetailsForm'] = ChangePasswordForm()
+    ## If the request is for changing the password, call the 
+    ## changePasswordH function
+    if request.method == 'POST':
+        passForm = changePasswordH(request)
+    else:
+        passForm = ChangePasswordForm()
+
+    contextDict['updateDetailsForm'] = passForm
 
     return render(request, 'traffic/account.html', context=contextDict)
 
-
-
-@login_required
-def changePassword(request):
-    if request.method == 'POST':
-
-        oldPassword = request.POST.get('oldPassword')
-        newPassword = request.POST.get('newPassword')
-        repeatNewPassword = request.POST.get('repeatNewPassword')
-
-        correctPassword = check_password(oldPassword, request.user.password)
-
-        if correctPassword:
-            if newPassword == repeatNewPassword:
-                request.user.set_password(newPassword)
-                request.user.save()
-                return redirect(reverse('traffic:account'))
-
-            else:
-                return HttpResponse('Invalid details')
-            
-        else:
-            return HttpResponse('Invalid details')
-
-    else:
-        redirect(reverse('traffic:account'))
         
     
 class ReactionsViewGreen(View):

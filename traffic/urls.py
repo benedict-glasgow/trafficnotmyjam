@@ -21,7 +21,6 @@ urlpatterns = [
     path('login/', views.userLogin, name='login'),
     path('logout/', views.userLogout, name='logout'),
     path('account/', views.account, name='account'),
-    path('account/changepassword/', views.changePassword, name='changePassword'),
     path('traffic/greenreaction/', views.ReactionsViewGreen.as_view(),name ='green'),
     path('traffic/yellowreaction/', views.ReactionsViewYellow.as_view(),name ='yellow'),
     path('traffic/redreaction/', views.ReactionsViewRed.as_view(),name ='red'),

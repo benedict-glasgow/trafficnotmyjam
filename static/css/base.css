@@ -101,7 +101,7 @@ body{
 	margin-left:2%;
 	padding-left:5%;
 	padding-right:2%;
-	padding-bottom: 25px;
+	padding-bottom: 100px;
 	float: left;
 	width: 40%;
 	
@@ -337,18 +337,22 @@ div.contentbox a:hover{
 	font-size: 30px;
 	color:  #e8e8e8;
 	font-weight: 550;
-	transition-duration: 250ms;
 	border-radius: 5px;
-}
-#title2:hover{
-	background-color: #e8e8e8;
-	color: #00334e;
 }
 
 #subtitle2{
 	margin-left: 15px;
 	margin-bottom: 20px;
 	margin-top: 5px;
+	font-size: 20px;
+	color:  #e8e8e8;
+	font-weight: 300;
+}
+
+#subtitle2-1{
+	margin-left: 15px;
+	margin-top: 5px;
+	margin-bottom: 0;
 	font-size: 20px;
 	color:  #e8e8e8;
 	font-weight: 300;
@@ -418,7 +422,9 @@ span.nonbreaking {
 	font-weight: 500;
 }
 
-#id_username{
+
+
+input[type="password"]{
 	background-color: #e8e8e8;
 	color: #00334e;
 	border-radius: 2px;
@@ -429,7 +435,7 @@ span.nonbreaking {
 	height: 25px;
 }
 
-#id_password{
+input[type="text"]{
 	background-color: #e8e8e8;
 	color: #00334e;
 	border-radius: 2px;
