@@ -17,7 +17,7 @@
 
 {% block right_body_block %}
 	<div id="r-block" >
-		<div id="map" class="mappost" data-centre="-" data-postids="{{ post.id }}" data-zoom="15" ></div>
+		<div id="map" class="mappost" data-centre="-" data-postids="{{ post.id }}" data-zoom="15" data-url="{% url 'traffic:loadMap' %}" ></div>
 		{{ post.location }}
 	</div>
 {% endblock %}
