@@ -1,7 +1,8 @@
 from django.test import TestCase
+from django.urls import reverse
 from traffic.models import Posts
 from django.contrib.auth.models import User
-from django.urls import reverse
+
 
 class ModelsTests(TestCase):
     def test_ensure_reactions_are_positive(self):
@@ -22,11 +23,3 @@ class ModelsTests(TestCase):
                      greenCount=0,yellowCount=0,redCount=0,stopCount=0 ) 
         post.save()
         self.assertEqual(post.slug, 'testing-post-slug1')
-        
-class IndexViewTests(TestCase): 
-    def test_index_view_with_no_categories(self): 
-        """ Checks if index page has no posts """ 
-        response = self.client.get(reverse('traffic:index'))
-        self.assertEqual(response.status_code, 200) 
-        #self.assertContains(response, 'Invalid page number') 
-        #self.assertQuerysetEqual(response.contextDict['posts'], [])

@@ -17,7 +17,20 @@ class Posts(models.Model):
     stopCount =  models.IntegerField(default = 0, blank=True)
     slug = models.SlugField()
     
+    
     def save(self, *args, **kwargs):
+        
+        if self.greenCount < 0:
+            self.greenCount = 0
+            
+        if self.yellowCount <0:
+            self.yellowCount =0
+            
+        if self.redCount < 0:
+            self.redCount = 0
+            
+        if self.stopCount < 0:
+            self.stopCount = 0
 
         if self.slug == '':
             ## If there is no slug, create the slug using the Posts title and the Posts id
@@ -34,17 +47,6 @@ class Posts(models.Model):
             super(Posts, self).save(*args, **kwargs)
 
 
-        if self.greenCount < 0:
-            self.greenCount = 0
-            
-        if self.yellowCount <0:
-            self.yellowCount =0
-            
-        if self.redCount < 0:
-            self.redCount = 0
-            
-        if self.stopCount < 0:
-            self.stopCount = 0
             
     
     def __str__(self):
