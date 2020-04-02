@@ -17,7 +17,7 @@
     <div id="accountpagetitle"> Posts: </div>
     {% if posts %}
     	{% for post in posts %}
-    		<a href="/post/{{ post.slug }}/"> {{ post.title }} </a> <br/><br/>
+    		<a href="/post/{{ post.slug }}/" id="searchresult"> {{ post.title }} </a> <br/><br/>
     	{% endfor %}
     {% else %}
     	<em> No results. </em> <br/>
@@ -30,7 +30,7 @@
     <div id="accountpagetitle"> Comments: </div>
     {% if comments %}
     	{% for comment in comments %}
-    		<a href="/post/{{ comment.post.slug }}/"> {{ comment.post.title }} </a> : <em> {{ comment.content }} </em> <br/><br/>
+    		<a href="/post/{{ comment.post.slug }}/" id=searchresult> {{ comment.post.title }} </a> : <em> {{ comment.content }} </em> <br/><br/>
     	{% endfor %}
     
     {% else %}

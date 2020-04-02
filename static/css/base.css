@@ -210,7 +210,7 @@ div.contentbox a{
 	font-weight: bold;	
 }
 div.contentbox a:hover{
-	color: #00334e;
+	color: #5391b3;
 }
 .contextbox{
     padding-top: 5px;
@@ -361,6 +361,7 @@ div.contentbox a:hover{
 #accountpagetitle{
 	margin-top: 5px;
 	margin-left: 10px;
+	margin-bottom: 15px;
 	padding: 5px;
 	padding-left: 7px;
 	font-size: 30px;
@@ -461,6 +462,18 @@ span.nonbreaking {
 	text-transform: capitalize;
 	font-size: 110%;
 	font-weight: 500;
+}
+
+#searchresult{
+	padding: 2px;
+	font-size: 1.3em;
+	margin: 1px;
+}
+#searchresult:hover{
+	color: #e8e8e8;
+	border: 1px solid #e8e8e8;
+	margin: 0px;
+	border-radius: 5px;
 }
 
 
