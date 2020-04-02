@@ -16,7 +16,6 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('search/<searchQuery>/', views.searchResult, name='searchResult'),
     path('addposts/',views.addPost, name ='addposts'),
-    path('addcomments/',views.addComments, name ='addComments'),
     path('register/', views.register, name='register'),
     path('login/', views.userLogin, name='login'),
     path('logout/', views.userLogout, name='logout'),
@@ -26,7 +25,5 @@ urlpatterns = [
     path('traffic/redreaction/', views.ReactionsViewRed.as_view(),name ='red'),
     path('traffic/stopreaction/', views.ReactionsViewStop.as_view(),name ='stop'),
     path('traffic/map/', views.LoadMapView.as_view(), name='loadMap'),
-    
-    #path('<slug:pk>/', indexView.as_view() ,name = 'index'),
 
 ]

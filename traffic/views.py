@@ -194,19 +194,6 @@ def addPost(request):
             
     return render(request, 'traffic/writePosts.html', {'form': form})
 
-def addComments(request):
-    form = CommentsForm()
-    
-    if request.method =='POST':
-        form = CommentsForm(request.POST)
-        
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect('/')
-        else:
-            print(form.errors)
-            
-    return render(request, 'traffic/post.html', {'form': form})
 
 def register(request):
     contextDict = {}
@@ -363,6 +350,7 @@ class ReactionsViewGreen(View):
         
         return HttpResponse(post.greenCount)
     
+
 class ReactionsViewYellow(View):
     def get(self, request):
         postId = request.GET['postId']
@@ -373,11 +361,12 @@ class ReactionsViewYellow(View):
         except ValueError: 
             return HttpResponse(-1)
         
-        post. yellowCount =  post. yellowCount + 1
+        post.yellowCount =  post. yellowCount + 1
         post.save()
         
         return HttpResponse(post.yellowCount)
             
+
 class ReactionsViewRed(View):
     def get(self, request):
         postId = request.GET['postId']
@@ -388,11 +377,12 @@ class ReactionsViewRed(View):
         except ValueError: 
             return HttpResponse(-1)
         
-        post. redCount =  post. redCount + 1
+        post.redCount =  post. redCount + 1
         post.save()
         
         return HttpResponse(post.redCount)
     
+
 class ReactionsViewStop(View):
     def get(self, request):
         postId = request.GET['postId']
@@ -403,11 +393,10 @@ class ReactionsViewStop(View):
         except ValueError: 
             return HttpResponse(-1)
         
-        post. stopCount =  post. stopCount + 1
+        post.stopCount =  post.stopCount + 1
         post.save()
         
         return HttpResponse(post.stopCount)
-
 
 
 class LoadMapView(View):
@@ -441,18 +430,4 @@ class LoadMapView(View):
 
         return HttpResponse(data)
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
