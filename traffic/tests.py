@@ -111,7 +111,3 @@ class ViewsTest(TestCase):
             """ Tests if account views cannot be accessed if a user is not logged in. """ 
             response = self.client.get(reverse('traffic:addposts'))
             self.assertEqual(response.status_code, 302)
- 
-        
-        
-        
