@@ -13,7 +13,7 @@
 
     {% for post in posts %}
         <div class="postbox">
-            <div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug%}">{{ post.title }}</a></strong> </div>
+            <div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug %}">{{ post.title }}</a></strong> </div>
             <div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }}</div>
             <div id="postimg"> <img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable"> </div>
         </div>
@@ -25,7 +25,7 @@
 
 {% block right_body_block %}
 	<div id="r-block" >
-		<div id="map" class="mapindex" data-centre="glasgow" data-postids="{% for p in posts %} {{ p.id }} {% endfor %}" data-zoom=11 ></div>
+		<div id="map" class="mapindex" data-centre="glasgow" data-postids="{% for p in posts %} {{ p.id }} {% endfor %}" data-zoom="11" ></div>
 	</div>
 {% endblock %}
 

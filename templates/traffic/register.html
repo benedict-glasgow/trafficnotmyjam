@@ -8,7 +8,7 @@
         {% if registered %}
             <em id="registrationalert"> Registration successful! </em>
         {% else %}
-            <form id="UserForm" method="POST" action="/register/" enctype="multipart/form-data" class="regform">
+            <form id="UserForm" method="POST" action="{% url 'traffic:register' %}" enctype="multipart/form-data" class="regform">
                 {% csrf_token %}
                 {% for hidden in userForm.hidden_fields %}
                     {{ hidden }}
@@ -27,9 +27,6 @@
                     <div id="register-field">{{ field }}</div>
                     <div id="register-field-errors">{{ field.errors }}</div><br/>
                 {% endfor %}
-                        <!-- {% csrf_token %}
-                {{ userForm.as_p }}
-                {{ userProfileForm.as_p }} -->
                 <br/>
                 <input type="submit" name="submit" value="Register" class="submitbutton"/>
             </form>

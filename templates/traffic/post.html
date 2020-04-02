@@ -17,7 +17,7 @@
 
 {% block right_body_block %}
 	<div id="r-block" >
-		<div id="map" class="mappost" data-centre="-" data-postids="{{ post.id }}" data-zoom=20 ></div>
+		<div id="map" class="mappost" data-centre="-" data-postids="{{ post.id }}" data-zoom="20" ></div>
 		{{ post.location }}
 	</div>
 {% endblock %}
@@ -72,7 +72,7 @@
 	</div>
 	<div class="commentdisplaybox" id="writecomment">
 			{% if user.is_authenticated %}
-				<form id="addComments" method="post" action = ".">
+				<form id="addComments" method="post" action = "{% url 'traffic:post' postSlug=post.slug %}">
 				{% for hidden in commentForm.hidden_fields %}
 					{{ hidden }}
 				{% endfor %}

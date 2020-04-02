@@ -10,7 +10,7 @@
      <div id="r-block" class="contentbox">
         
         <div id="accountpagetitle"> Change your Password: </div> <br/>
-        <form id="UpdateDetailsForm" method="POST" action="/account/" enctype="multipart/form-data" >
+        <form id="UpdateDetailsForm" method="POST" action="{% url 'traffic:account' %}" enctype="multipart/form-data" >
             {% csrf_token %}
             {% for hidden in updateDetailsForm.hidden_fields %}
                 {{ hidden }}
@@ -32,7 +32,7 @@
         <div id="accountpagetitle"> Your Posts: </div> <br/>
         {% for post in posts %} 
     	<div class="postbox">
-			<div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug%}">{{ post.title }}</a></strong> </div>
+			<div id="posttitle"><strong><a href="{% url 'traffic:post' postSlug=post.slug %}">{{ post.title }}</a></strong> </div>
 			<div id="postinfo"> A {{ post.category }} incident posted by {{ post.user.username }}</div>
 			<div id="postimg"> <img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Post Image Unavailable"> </div>
 		</div>
@@ -48,10 +48,4 @@
             </div>
         {% endfor %}   
     </div>   
-{% endblock %}
-
-
-{% block additional_resources %}
-	<script src="{% static "js/maps-Bing.js" %}" crossorigin="anonymous"></script>
-	<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 {% endblock %}
