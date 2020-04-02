@@ -2,6 +2,7 @@ from django.test import TestCase
 from traffic.models import Posts
 from traffic.forms import PostsForm,CommentsForm,UserForm,ChangePasswordForm
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class ModelsTests(TestCase):
@@ -78,6 +79,39 @@ class UserLoginTest(TestCase):
         """ Checks a user can login with a invalid username and password. """ 
         checkLogin = self.client.login(username='test', password='test')
         self.assertFalse(checkLogin)
+        
+class ViewsTest(TestCase):
+        def test_account_view(self):
+            """ Tests if account view can be accessed if a user is logged in. """ 
+            user = User.objects.get_or_create(username='test')[0]
+            user.set_password('test')
+            user.save()
+            checkLogin = self.client.login(username='test', password='test')
+            self.assertTrue(checkLogin)
+            response = self.client.get(reverse('traffic:account'))
+            self.assertEqual(response.status_code, 200)
+            
+        def test_account_view_invalid(self):
+            """ Tests if account view cannot be accessed if a user is not logged in. """ 
+            response = self.client.get(reverse('traffic:account'))
+            self.assertEqual(response.status_code, 302)
+            
+            
+        def test_addPost_view(self):
+            """ Tests if addPost view can be accessed if a user is logged in. """ 
+            user = User.objects.get_or_create(username='test')[0]
+            user.set_password('test')
+            user.save()
+            checkLogin = self.client.login(username='test', password='test')
+            self.assertTrue(checkLogin)
+            response = self.client.get(reverse('traffic:addposts'))
+            self.assertEqual(response.status_code, 200)
+            
+        def test_addPost_view_invalid(self):
+            """ Tests if account views cannot be accessed if a user is not logged in. """ 
+            response = self.client.get(reverse('traffic:addposts'))
+            self.assertEqual(response.status_code, 302)
+ 
         
         
         
