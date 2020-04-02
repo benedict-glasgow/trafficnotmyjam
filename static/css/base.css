@@ -318,6 +318,14 @@ div.contentbox a:hover{
 	background-color: #e8e8e8;
 }
 
+#centeredtitle{
+	margin: auto;
+	width: 65%;
+	min-width: 500px;
+	font-size: 50px;
+	color:  #e8e8e8;
+	font-weight: 200;
+}
 #searchForm{
 	margin: auto;
 	margin-top: 10px;
@@ -334,7 +342,7 @@ div.contentbox a:hover{
 }
 
 #title{
-	margin: auto;
+	margin-left: 5%;
 	width: 65%;
 	min-width: 500px;
 	font-size: 50px;
