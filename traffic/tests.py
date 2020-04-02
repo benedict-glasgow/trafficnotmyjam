@@ -1,6 +1,6 @@
 from django.test import TestCase
-from django.urls import reverse
 from traffic.models import Posts
+from traffic.forms import PostsForm,CommentsForm,UserForm,ChangePasswordForm
 from django.contrib.auth.models import User
 
 
@@ -16,10 +16,54 @@ class ModelsTests(TestCase):
         
         
     def test_slug_line_creation(self): 
-        """ When a post is created an approprate slug should be created". """ 
+        """ When a post is created an approprate slug should be created. """ 
         user = User.objects.get_or_create(username='test', password = 'test')[0]
         user.save()
         post = Posts(title='Testing Post Slug',user=user,description = 'test',location= 'G1',category = 'general-jams',
                      greenCount=0,yellowCount=0,redCount=0,stopCount=0 ) 
         post.save()
         self.assertEqual(post.slug, 'testing-post-slug1')
+
+class FormTests(TestCase):
+    def test_posts_form(self):
+        """ Tests PostsForm is valid. """ 
+        form = PostsForm(data ={'title':'Testing Posts Form','description':'test','location':'G1','category':'general-jams'})
+        self.assertTrue(form.is_valid())
+        
+    def test_posts_form_invalid(self):
+        """ Tests PostsForm is invalid. """ 
+        form = PostsForm(data ={'title':'','description':'','location':'','category':''})
+        self.assertFalse(form.is_valid())
+        
+    def test_comment_form(self):
+        """ Tests CommentsForm is valid. """ 
+        form = CommentsForm(data = {'content':'test content'})
+        self.assertTrue(form.is_valid())
+        
+    def test_comment_form_invalid(self):
+        """ Tests CommentsForm is invalid. """ 
+        form = CommentsForm(data = {'content':''})
+        self.assertFalse(form.is_valid())
+        
+    def test_user_form(self):
+        """ Tests UserForm is valid. """ 
+        form = UserForm(data = {'username': 'test','password':'test1'})
+        self.assertTrue(form.is_valid())
+        
+    def test_user_form_invalid(self):
+        """ Tests UserForm is invalid. """ 
+        form = UserForm(data = {'username': '','password':''})
+        self.assertFalse(form.is_valid())
+        
+    def test_change_password_form(self):
+        """ Tests ChangePasswordForm is valid. """ 
+        form = ChangePasswordForm(data = {'oldPassword' : 'test', 'newPassword' : 'test2', 'repeatNewPassword': 'test2'})
+        self.assertTrue(form.is_valid())
+        
+    def test_change_password_form_invalid(self):
+        """ Tests ChangePasswordForm is invalid. """ 
+        form = ChangePasswordForm(data = {'oldPassword' : '', 'newPassword' : '', 'repeatNewPassword': ''})
+        self.assertFalse(form.is_valid())
+        
+        
+        
