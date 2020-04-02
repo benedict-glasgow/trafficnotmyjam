@@ -171,10 +171,17 @@ def addPost(request):
         
         if form.is_valid():
             post = form.save(commit=False)
+
+            ## Set the user to the one creating the post
             post.user = request.user
 
+            ## Try figuring out the location
             location = getCoordinates(post.location)
             post.location = location
+
+            ## If the post has no image use a placeholder image
+            if post.photo == '':
+                post.photo = 'placeholder.jpg'
 
             post.save()
             return redirect('/')
