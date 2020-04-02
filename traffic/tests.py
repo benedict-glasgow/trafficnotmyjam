@@ -64,6 +64,20 @@ class FormTests(TestCase):
         """ Tests ChangePasswordForm is invalid. """ 
         form = ChangePasswordForm(data = {'oldPassword' : '', 'newPassword' : '', 'repeatNewPassword': ''})
         self.assertFalse(form.is_valid())
+
+class UserLoginTest(TestCase):
+    def test_user_login(self):
+        """ Checks a user can login with a valid username and password. """ 
+        user = User.objects.get_or_create(username='test')[0]
+        user.set_password('test')
+        user.save()
+        checkLogin = self.client.login(username='test', password='test')
+        self.assertTrue(checkLogin)
+        
+    def test_user_invalid_login(self):
+        """ Checks a user can login with a invalid username and password. """ 
+        checkLogin = self.client.login(username='test', password='test')
+        self.assertFalse(checkLogin)
         
         
         
