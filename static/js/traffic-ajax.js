@@ -3,8 +3,9 @@ $(document).ready(function() {
     $('#green_btn').click(function() { 
         var postIdVar; 
         postIdVar = $(this).attr('data-postid');
+        var getUrl = $(this).attr('data-url');
 
-        $.get('/traffic/greenreaction/', 
+        $.get(getUrl, 
             {'postId': postIdVar}, 
             function(data) { 
                 $('#green_btn').text(data); 
@@ -17,8 +18,9 @@ $(document).ready(function() {
     $('#yellow_btn').click(function() { 
         var postIdVar; 
         postIdVar = $(this).attr('data-postid');
+        var getUrl = $(this).attr('data-url');
 
-        $.get('/traffic/yellowreaction/', 
+        $.get(getUrl, 
             {'postId': postIdVar}, 
             function(data) { 
                 $('#yellow_btn').text(data); 
@@ -31,8 +33,9 @@ $(document).ready(function() {
     $('#red_btn').click(function() { 
         var postIdVar; 
         postIdVar = $(this).attr('data-postid');
+        var getUrl = $(this).attr('data-url');
 
-        $.get('/traffic/redreaction/', 
+        $.get(getUrl, 
             {'postId': postIdVar}, 
             function(data) { 
                 $('#red_btn').text(data); 
@@ -45,8 +48,9 @@ $(document).ready(function() {
     $('#stop_btn').click(function() { 
         var postIdVar; 
         postIdVar = $(this).attr('data-postid');
+        var getUrl = $(this).attr('data-url');
 
-        $.get('/traffic/stopreaction/', 
+        $.get(getUrl, 
             {'postId': postIdVar}, 
             function(data) { 
                 $('#stop_btn').text(data);
