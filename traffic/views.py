@@ -185,7 +185,7 @@ def addPost(request):
 
             ## If the post has no image use a placeholder image
             if post.photo == '':
-                post.photo = 'placeholder.jpg'
+                post.photo = 'noImageFound.PNG'
 
             post.save()
             return redirect(reverse('traffic:index'))
