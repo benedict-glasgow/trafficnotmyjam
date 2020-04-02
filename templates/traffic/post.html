@@ -72,9 +72,6 @@
 	</div>
 	<div class="commentdisplaybox" id="writecomment">
 			{% if user.is_authenticated %}
-				{% if newComment %}
-					Comment Added!
-				{% endif %}
 				<form id="addComments" method="post" action = ".">
 				{% for hidden in commentForm.hidden_fields %}
 					{{ hidden }}

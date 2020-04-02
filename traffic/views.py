@@ -45,30 +45,30 @@ def indexMain(request):
 
 def post(request, postSlug):
     contextDict = { 'comments': None }
-    newComment = False
     post = get_object_or_404(Posts, slug=postSlug)
 
     ## If the request is from saving a comment, save the comment
     if request.method == 'POST':
         commentForm = CommentsForm(data=request.POST)
-        
+
         if commentForm.is_valid():
             currentComment = commentForm.save(commit=False)
             currentComment.post = post
             currentComment.user = request.user
             currentComment.save()
-            newComment = True
+
+            ## In order to avoid refreshing the page causing a reposting of the comment
+            return redirect(reverse('traffic:post', args=[postSlug]))
 
 
     commentForm = CommentsForm()
-    comments = Comments.objects.filter(post=post)
+    comments = Comments.objects.filter(post=post).order_by('-date')
      
     if comments.exists():
         contextDict['comments'] = comments
 
     contextDict['post'] = post
     contextDict['commentForm'] = commentForm
-    contextDict['newComment'] = newComment
 
     return render(request, 'traffic/post.html', contextDict) 
 
@@ -128,7 +128,8 @@ def search(request):
         form = SearchForm(request.POST)
 
         if form.is_valid():
-            return redirect(form.cleaned_data['search'] + '/')
+            searchQuery = form.cleaned_data['search']
+            return redirect(reverse('traffic:searchResult', args=[searchQuery]))
 
         else:
             print(form.errors)
@@ -143,7 +144,9 @@ def searchResult(request, searchQuery):
         form = SearchForm(request.POST)
 
         if form.is_valid():
-            return redirect(form.cleaned_data['search'] + '/')
+            ## If making a new search query, redirect to that search page
+            searchQuery = form.cleaned_data['search']
+            return redirect(reverse('traffic:searchResult', args=[searchQuery]))
 
         else:
             print(form.errors)
@@ -185,7 +188,7 @@ def addPost(request):
                 post.photo = 'placeholder.jpg'
 
             post.save()
-            return redirect('/')
+            return redirect(reverse('traffic:index'))
         else:
             print(form.errors)
             
