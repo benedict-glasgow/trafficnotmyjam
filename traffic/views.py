@@ -5,20 +5,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import validate_password, ValidationError
+from django.core import serializers
+from django.views.generic import View
 from traffic.models import Posts, Comments
 from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm, ChangePasswordForm
 from traffic.multichoice import POST_CATEGORIES
-import json
 from traffic.bingCoordinates import getCoordinates
-from django.views.generic import View
-from django.core import serializers
 from math import ceil
-#from django import template
-#register = template.Library()
+import json
 
-def indexMain(request):
-    ## If the front page is requested, it is the same as the first page
-    return index(request, '1')
 
 def index(request, page):
     contextDict = {}
@@ -42,36 +37,40 @@ def index(request, page):
     contextDict['pageNumber'] = page
     return render(request, 'traffic/index.html', context=contextDict)
 
+
+def indexMain(request):
+    ## If the front page is requested, it is the same as the first page
+    return index(request, '1')
+    
+
 def post(request, postSlug):
-   
+    contextDict = { 'comments': None }
+    newComment = False
     post = get_object_or_404(Posts, slug=postSlug)
-    user = request.user
-    comments = Comments.objects.filter(post=post)
-     
-    if comments.exists():
-        comments = comments
-    else:
-        comments = None
-            
-      
-    currentComment = None
-        
+
+    ## If the request is from saving a comment, save the comment
     if request.method == 'POST':
         commentForm = CommentsForm(data=request.POST)
+        
         if commentForm.is_valid():
             currentComment = commentForm.save(commit=False)
             currentComment.post = post
-            currentComment.user = user
+            currentComment.user = request.user
             currentComment.save()
-    else:
-            
-        commentForm = CommentsForm()
-            
-    
-    return render(request, 'traffic/post.html',  {'post': post,
-                   'comments': comments,
-                   'currentComment': currentComment,
-                   'commentForm': commentForm}) 
+            newComment = True
+
+
+    commentForm = CommentsForm()
+    comments = Comments.objects.filter(post=post)
+     
+    if comments.exists():
+        contextDict['comments'] = comments
+
+    contextDict['post'] = post
+    contextDict['commentForm'] = commentForm
+    contextDict['newComment'] = newComment
+
+    return render(request, 'traffic/post.html', contextDict) 
 
 
 def information(request):
@@ -80,7 +79,7 @@ def information(request):
 
 
 def about(request):
-    return redirect('/about/information/')
+    return redirect(reverse('traffic:information'))
 
 
 def rules(request):
@@ -99,7 +98,8 @@ def categories(request):
     categories = []
 
     for category in POST_CATEGORIES:
-        categories += [ {'slug':category[0], 'name':category[1],
+        categories += [ { 'slug':category[0], 
+        'name':category[1],
         'count': Posts.objects.filter(category=category[0]).count() } ]
     
     contextDict['categories'] = categories
@@ -115,6 +115,7 @@ def category(request, categorySlug):
     if posts.exists():
         contextDict['posts'] = posts
 
+    ## Get the category name
     contextDict['categoryName'] = dict(POST_CATEGORIES)[categorySlug]
 
     return render(request, 'traffic/category.html', context=contextDict)

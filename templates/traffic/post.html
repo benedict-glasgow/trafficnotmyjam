@@ -72,22 +72,21 @@
 	</div>
 	<div class="commentdisplaybox" id="writecomment">
 			{% if user.is_authenticated %}
-				{% if new_comment %}
+				{% if newComment %}
 					Comment Added!
-				{% else %}
-				  <form id="addComments" method="post" action = ".">
-					{% for hidden in commentForm.hidden_fields %}
-						{{ hidden }}
-					{% endfor %}
-					{% for field in commentForm.visible_fields %}
-						{{ field.errors }}
-						<strong>{{ field.help_text }}</strong><br/><br/>
-						{{ field }}
-					{% endfor %}
-				   {% csrf_token %}
-				  <input type = "submit" value= "Post" class="submitbutton">
-				  </form>
 				{% endif %}
+				<form id="addComments" method="post" action = ".">
+				{% for hidden in commentForm.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+				{% for field in commentForm.visible_fields %}
+					{{ field.errors }}
+					<strong>{{ field.help_text }}</strong><br/><br/>
+					{{ field }}
+				{% endfor %}
+				{% csrf_token %}
+				<input type = "submit" value= "Post" class="submitbutton">
+				</form>
 			{% else %}
 				Sign In Or Register To Make A Comment
 			{% endif %}
