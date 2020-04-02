@@ -1,4 +1,4 @@
-# trafficnotmyjam
+# Traffic-Not-My-Jam
 External Sources (Technologies):
 JQuery,
 Bing Maps (Bing Maps V8 Control API ,Bing Maps Locations API),
