@@ -1,8 +1,8 @@
 # trafficnotmyjam
 External Sources (Technologies):
-JQuery
-Bing Maps (Bing Maps V8 Control API ,Bing Maps Locations API)
-Ajax
+JQuery,
+Bing Maps (Bing Maps V8 Control API ,Bing Maps Locations API),
+Ajax.
 
 External Sources (Images):
 Slippery road – used in the fav icon and the noImageFound.png: 
