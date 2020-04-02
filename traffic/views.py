@@ -10,7 +10,7 @@ from django.views.generic import View
 from traffic.models import Posts, Comments
 from traffic.forms import SearchForm, PostsForm, CommentsForm, UserForm, UserProfileForm, ChangePasswordForm
 from traffic.multichoice import POST_CATEGORIES
-from traffic.bingCoordinates import getCoordinates
+from traffic.bingMapsFunctions import getCoordinates, getKey
 from math import ceil
 import json
 
@@ -426,7 +426,7 @@ class LoadMapView(View):
             except:
                 centre = glasgowCoordinates
 
-        data = json.dumps({'posts': posts, 'centre': centre} )
+        data = json.dumps({'posts': posts, 'centre': centre, 'key': getKey() } )
 
         return HttpResponse(data)
         

@@ -7,15 +7,16 @@ function GetMap(){
     var postIDs = $('#map').attr('data-postids');
     var centre = $('#map').attr('data-centre');
     var zoom = parseInt( $('#map').attr('data-zoom') );
+    var getUrl = $('#map').attr('data-url');
 
     // Get the data from the server
-    $.get('/traffic/map', { 'postIDs':postIDs, 'centre':centre}, function(data) {
+    $.get(getUrl, { 'postIDs':postIDs, 'centre':centre}, function(data) {
         // Parse the data sent back from the server
         pinData = JSON.parse(data);
 
         // Display the main map
         var map = new Microsoft.Maps.Map('#map', { 
-            credentials: 'AuJ09npEnmthbBSxKu6teNImwt-6ZIn83affPp-nyUTAfXypqFl12jmF_SFV0IO6',
+            credentials: pinData['key'],
             center: new Microsoft.Maps.Location(pinData['centre'][0], pinData['centre'][1]),
             mapTypeId: Microsoft.Maps.MapTypeId.road,
             zoom: zoom,
