@@ -3,7 +3,7 @@
 
 {% block topbar %}
 <div class="contentbox" id="searchbar">
-	<div id="title"> Search the website: </div>
+	<div id="centeredtitle"> Search the website: </div>
 	<form id="searchForm" method="post" action="/search/">
 		{% csrf_token %}
 		{{ form.search.errors }}
